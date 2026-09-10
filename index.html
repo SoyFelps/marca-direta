@@ -1,0 +1,1431 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marca Direta — Registro e proteção de marcas</title>
+<meta name="description" content="Registro, monitoramento e defesa de marcas no INPI. Condução jurídica especializada do briefing à concessão.">
+
+<link rel="icon" type="image/svg+xml" href="assets/mark.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --green: #3ECF4A;
+    --teal: #1B7A7A;
+    --ink: #0E2B28;
+    --ink-soft: #3E5E5A;
+    --bg: #FAFAF8;
+    --bg-soft: #EFF6F1;
+    --white: #FFFFFF;
+    --line: rgba(14,43,40,.12);
+    --gradient: linear-gradient(135deg, var(--green), var(--teal));
+    --shadow: 0 20px 50px -20px rgba(14,43,40,.25);
+    --radius: 18px;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{
+    margin:0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  h1,h2,h3,.display{
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+  p{ margin:0; line-height: 1.6; color: var(--ink-soft); }
+  a{ color: inherit; text-decoration: none; }
+  img{ max-width: 100%; display:block; }
+  .mono{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .72rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .wrap{ max-width: 1160px; margin: 0 auto; padding: 0 28px; }
+  section{ position: relative; }
+
+  ::selection{ background: var(--green); color: var(--white); }
+
+  /* ---------- Buttons ---------- */
+  .btn{
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 26px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: .95rem;
+    border: none;
+    cursor: pointer;
+    transition: transform .25s ease, box-shadow .25s ease;
+    white-space: nowrap;
+  }
+  .btn:focus-visible{ outline: 3px solid var(--green); outline-offset: 3px; }
+  .btn-primary{
+    background: var(--gradient);
+    color: var(--white);
+    box-shadow: 0 12px 30px -10px rgba(27,122,122,.55);
+  }
+  .btn-primary:hover{ transform: translateY(-2px); box-shadow: 0 16px 36px -10px rgba(27,122,122,.65); }
+  .btn-ghost{
+    background: transparent;
+    color: var(--ink);
+    border: 1.5px solid var(--line);
+  }
+  .btn-ghost:hover{ border-color: var(--teal); color: var(--teal); }
+  .btn-light{
+    background: var(--white);
+    color: var(--ink);
+  }
+  .btn-light:hover{ transform: translateY(-2px); }
+
+  /* ---------- Header ---------- */
+  header{
+    position: sticky; top:0; z-index: 100;
+    background: rgba(250,250,248,.82);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid transparent;
+    transition: border-color .3s ease;
+  }
+  header.scrolled{ border-color: var(--line); }
+  .header-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 16px 0;
+  }
+  .logo{ display:flex; align-items:center; }
+  .logo img{ height: 34px; width:auto; }
+  nav{ display:flex; align-items:center; gap: 36px; }
+  nav a:not(.btn){
+    font-size: .92rem; font-weight: 500; color: var(--ink-soft);
+    position: relative;
+    padding: 4px 0;
+  }
+  nav a:not(.btn)::after{
+    content:''; position:absolute; left:0; bottom:-2px; height:2px; width:0;
+    background: var(--gradient); transition: width .25s ease;
+  }
+  nav a:not(.btn):hover{ color: var(--ink); }
+  nav a:not(.btn):hover::after{ width: 100%; }
+  .nav-links{ display:flex; align-items:center; gap:32px; }
+  .menu-toggle{ display:none; background:none; border:none; cursor:pointer; padding: 6px; }
+  .menu-toggle span{ display:block; width:24px; height:2px; background:var(--ink); margin:5px 0; transition: all .3s ease; }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding: 96px 0 110px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-wrap{
+    display: grid;
+    grid-template-columns: 1.15fr .85fr;
+    align-items: center;
+    gap: 48px;
+  }
+  .hero-inner{
+    position: relative; z-index: 2;
+    max-width: 700px;
+  }
+
+  /* ---------- Verificador ao vivo (hero) ---------- */
+  .hero-verifier{
+    position: relative; z-index: 2;
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    padding: 26px;
+    box-shadow: 0 30px 70px -30px rgba(14,43,40,.35);
+  }
+  .hero-verifier .card-label{
+    color: var(--ink-soft);
+    margin-bottom: 12px;
+    display: block;
+  }
+  .hero-verifier .search-box{
+    display:flex; align-items:center; gap:10px;
+    background: var(--bg-soft);
+    border-radius: 14px;
+    padding: 14px 16px;
+    border: 1.5px solid var(--line);
+  }
+  .hero-verifier .search-box svg{ flex-shrink:0; }
+  .hero-verifier #typedName{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    font-size:1.05rem;
+    color: var(--ink);
+  }
+  .hero-verifier #typedCaret{
+    display:inline-block; width:2px; height:20px;
+    background: var(--teal); margin-left:2px; vertical-align:middle;
+    animation: verifierBlink 1s step-end infinite;
+  }
+  @keyframes verifierBlink{ 50%{ opacity:0; } }
+  .hero-verifier .verifier-result{
+    margin-top:16px; display:flex; align-items:center; gap:10px;
+    padding:12px 14px; border-radius:12px; font-size:.9rem; font-weight:600;
+    transition: all .3s ease;
+  }
+  .hero-verifier .verifier-result.ok{ background: rgba(62,207,74,.12); color:#1E7A2C; }
+  .hero-verifier .verifier-result.no{ background: rgba(220,80,80,.1); color:#B23A3A; }
+  .hero-verifier .verifier-recent{
+    margin-top:20px; padding-top:18px; border-top:1px dashed var(--line);
+  }
+  .hero-verifier .r-item{
+    display:flex; justify-content:space-between; align-items:center;
+    font-size:.85rem; padding:7px 0; color: var(--ink-soft);
+  }
+  .hero-verifier .r-item b{ color: var(--ink); font-weight:600; }
+  .hero-verifier .r-tag{
+    font-family:'JetBrains Mono', monospace; font-size:.66rem;
+    padding:3px 8px; border-radius:6px;
+  }
+  .hero-verifier .r-tag.ok{ background: rgba(62,207,74,.15); color:#1E7A2C; }
+  .hero-verifier .r-tag.no{ background: rgba(220,80,80,.13); color:#B23A3A; }
+
+  @media (max-width: 880px){
+    .hero-wrap{ grid-template-columns: 1fr; }
+    .hero-verifier{ order:-1; margin-bottom: 8px; }
+  }
+  @media (max-width: 640px){
+    .hero-verifier{ display:none; }
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    color: var(--teal); margin-bottom: 22px;
+  }
+  .eyebrow::before{
+    content:''; width:7px; height:7px; border-radius:50%;
+    background: var(--gradient);
+  }
+  .hero h1{
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    line-height: 1.06;
+  }
+  .hero h1 .accent{
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .hero p.lead{
+    margin-top: 22px;
+    font-size: 1.15rem;
+    max-width: 520px;
+  }
+  .hero-cta{
+    margin-top: 36px;
+    display:flex; align-items:center; gap:18px; flex-wrap:wrap;
+  }
+  .checklist{
+    margin-top: 56px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    gap: 14px 32px;
+    max-width: 620px;
+  }
+  .checklist li{
+    list-style:none;
+    display:flex; align-items:flex-start; gap:10px;
+    font-size: .92rem;
+    color: var(--ink-soft);
+  }
+  .checklist svg{ flex:none; margin-top:2px; }
+
+  /* ---------- Vídeo ---------- */
+  .video-section{
+    padding: 20px 0 90px;
+  }
+
+  .video-wrapper{
+    max-width: 920px;
+    margin: 0 auto;
+  }
+
+  .video-frame{
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: 24px;
+    background: var(--ink);
+    box-shadow: 0 30px 70px -30px rgba(14,43,40,.35);
+  }
+
+  .video-frame iframe{
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  @media (max-width: 640px){
+    .video-section{
+      padding: 10px 0 70px;
+    }
+
+    .video-frame{
+      border-radius: 16px;
+    }
+  }
+
+  /* ---------- Section headers ---------- */
+  .section-head{
+    max-width: 560px;
+    margin-bottom: 56px;
+  }
+  .section-head .mono{ color: var(--teal); margin-bottom: 14px; display:block; }
+  .section-head h2{ font-size: clamp(1.8rem, 3.4vw, 2.5rem); }
+  .section-head p{ margin-top: 16px; font-size: 1.02rem; }
+  .center{ text-align:center; margin-left:auto; margin-right:auto; }
+
+  /* ---------- Offer cards ---------- */
+  .offer{ padding: 90px 0 40px; }
+  .offer-grid{
+    display:grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  }
+  .offer-card{
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 34px 28px;
+    transition: transform .3s ease, box-shadow .3s ease;
+  }
+  .offer-card:hover{ transform: translateY(-6px); box-shadow: var(--shadow); }
+  .offer-num{
+    font-family:'JetBrains Mono', monospace;
+    font-size:.75rem; color: var(--teal); font-weight:500;
+  }
+  .offer-icon{
+    width: 46px; height:46px; border-radius: 12px;
+    background: var(--bg-soft);
+    display:flex; align-items:center; justify-content:center;
+    margin-bottom: 22px;
+  }
+  .offer-card h3{ font-size: 1.18rem; margin-bottom: 10px; }
+  .offer-card p{ font-size: .95rem; }
+
+
+  /* ---------- Serviços complementares ---------- */
+  .support-services{ padding: 80px 0 90px; }
+  .support-services .section-head{ margin-bottom: 42px; }
+  .support-grid{
+    display:grid; grid-template-columns: repeat(4, 1fr); gap: 18px;
+  }
+  .support-card{
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 28px 24px;
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
+  .support-card:hover{ transform: translateY(-4px); box-shadow: var(--shadow); }
+  .support-icon{
+    width: 42px; height:42px; border-radius: 11px;
+    background: var(--bg-soft);
+    display:flex; align-items:center; justify-content:center;
+    margin-bottom: 20px;
+  }
+  .support-card h3{ font-size: 1.05rem; margin-bottom: 8px; }
+  .support-card p{ font-size: .9rem; }
+  .support-card .offer-num{ display:block; margin-bottom: 10px; }
+
+  /* ---------- Process (signature flow) ---------- */
+  .process{ padding: 110px 0; }
+  .process-path-wrap{ position: relative; }
+  .process-svg-path{
+    position: absolute;
+    top:0; left:0; width:100%; height:100%;
+    z-index: 0;
+  }
+  .process-steps{
+    position: relative; z-index: 1;
+    display:flex; flex-direction: column; gap: 0;
+  }
+  .p-step{
+    display:grid;
+    grid-template-columns: 1fr 90px 1fr;
+    grid-template-areas: "content node .";
+    align-items:center;
+    min-height: 168px;
+  }
+  .p-step:nth-child(even){ grid-template-areas: ". node content"; }
+  .p-step .p-content{
+    grid-area: content;
+    max-width: 380px;
+  }
+  .p-step:nth-child(odd) .p-content{ justify-self: end; text-align:right; }
+  .p-step:nth-child(even) .p-content{ justify-self: start; text-align:left; }
+  .p-node{
+    grid-area: node;
+    width: 58px; height:58px; border-radius: 50%;
+    background: var(--white);
+    border: 1.5px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'JetBrains Mono', monospace;
+    font-weight:500; font-size:.85rem;
+    color: var(--teal);
+    justify-self:center;
+    box-shadow: 0 8px 24px -12px rgba(14,43,40,.2);
+    transition: background .3s ease, color .3s ease, transform .3s ease;
+  }
+  .p-step.in-view .p-node{
+    background: var(--gradient); color:var(--white); transform: scale(1.08);
+  }
+  .p-content h3{ font-size: 1.12rem; margin-bottom: 8px; }
+  .p-content p{ font-size: .92rem; }
+
+  @media (max-width: 760px){
+    .process{ padding: 80px 0; }
+    .process-svg-path{ display:none; }
+    .process-steps{ gap: 30px; }
+    .p-step{
+      grid-template-columns: 52px 1fr;
+      grid-template-areas: "node content";
+      align-items:flex-start;
+      column-gap: 16px;
+      min-height:auto;
+    }
+    .p-step:nth-child(even){ grid-template-areas: "node content"; }
+    .p-step .p-content{ max-width:none; }
+    .p-step:nth-child(odd) .p-content,
+    .p-step:nth-child(even) .p-content{ justify-self:start; text-align:left; }
+    .p-node{
+      width:44px; height:44px; font-size:.78rem;
+      justify-self:start; margin-top:2px;
+    }
+  }
+
+  /* ---------- Why register (dark band) ---------- */
+  .why{
+    background: var(--ink);
+    color: var(--white);
+    padding: 100px 0;
+    border-radius: 32px;
+    margin: 20px 20px 0;
+  }
+  .why .wrap{ max-width: 1120px; }
+  .why-grid{
+    display:grid; grid-template-columns: 1fr 1.3fr; gap: 60px; align-items:center;
+  }
+  .why h2{ color: var(--white); font-size: clamp(1.8rem,3vw,2.3rem); }
+  .why-lead{ color: rgba(255,255,255,.65); margin-top:16px; }
+  .why-list{ display:flex; flex-direction:column; gap:0; }
+  .why-item{
+    display:flex; gap:18px; align-items:flex-start;
+    padding: 24px 0;
+    border-top: 1px solid rgba(255,255,255,.12);
+  }
+  .why-item:last-child{ border-bottom: 1px solid rgba(255,255,255,.12); }
+  .why-icon{
+    flex:none; width:38px; height:38px; border-radius:10px;
+    background: rgba(255,255,255,.08);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .why-item h4{ font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:1.02rem; margin-bottom:4px; color:var(--white); }
+  .why-item p{ color: rgba(255,255,255,.6); font-size: .92rem; }
+
+  /* ---------- Team ---------- */
+  .team{ padding: 110px 0; }
+  .team-grid{
+    display:grid; grid-template-columns: repeat(2,1fr); gap: 24px;
+  }
+  .team-card{
+    background: var(--bg-soft);
+    border-radius: var(--radius);
+    padding: 36px;
+    display:flex; gap:22px; align-items:center;
+  }
+  .avatar{
+    flex:none; width:96px; height:96px; border-radius:50%;
+    background: #0E2B28;
+    display:flex; align-items:center; justify-content:center;
+    color:var(--white); font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:1.4rem;
+    overflow: hidden;
+  }
+  .avatar img{
+    width:100%; height:100%; object-fit:cover; object-position: top center;
+    border-radius: 50%;
+  }
+  .team-card h3{ font-size:1.1rem; }
+  .team-card .role{ color: var(--teal); font-size:.85rem; font-weight:600; margin-top:4px; }
+  .team-card .cred{ color: var(--ink-soft); font-size:.85rem; margin-top:8px; }
+
+  /* ---------- FAQ ---------- */
+  .faq{ padding: 100px 0 120px; }
+  .faq-list{ max-width: 760px; }
+  .faq-item{
+    border-bottom: 1px solid var(--line);
+  }
+  .faq-q{
+    width:100%; text-align:left; background:none; border:none; cursor:pointer;
+    display:flex; align-items:center; justify-content:space-between; gap: 20px;
+    padding: 26px 4px;
+    font-family:'Space Grotesk',sans-serif; font-weight:600; font-size: 1.04rem;
+    color: var(--ink);
+  }
+  .faq-q .plus{
+    flex:none; width:28px; height:28px; border-radius:50%;
+    border: 1.5px solid var(--line);
+    position:relative; transition: transform .3s ease, background .3s ease, border-color .3s ease;
+  }
+  .faq-q .plus::before, .faq-q .plus::after{
+    content:''; position:absolute; background: var(--ink); transition: background .3s ease;
+  }
+  .faq-q .plus::before{ top:50%; left:7px; right:7px; height:1.5px; transform:translateY(-50%); }
+  .faq-q .plus::after{ left:50%; top:7px; bottom:7px; width:1.5px; transform:translateX(-50%); }
+  .faq-item.open .plus{ transform: rotate(135deg); background: var(--gradient); border-color: transparent; }
+  .faq-item.open .plus::before, .faq-item.open .plus::after{ background: var(--white); }
+  .faq-a{
+    max-height:0; overflow:hidden; transition: max-height .35s ease;
+  }
+  .faq-a p{ padding: 0 4px 26px; font-size: .97rem; max-width: 620px; }
+
+  /* ---------- CTA / footer ---------- */
+  .cta-band{
+    margin: 40px 20px 0;
+    border-radius: 32px;
+    padding: 90px 40px;
+    background: var(--gradient);
+    text-align:center;
+    color: var(--white);
+    position: relative;
+    overflow:hidden;
+  }
+  .cta-band h2{ color:var(--white); font-size: clamp(1.9rem,4vw,2.7rem); max-width:680px; margin:0 auto; }
+  .cta-band p{ color: rgba(255,255,255,.85); margin-top:16px; max-width:480px; margin-left:auto; margin-right:auto; }
+  .cta-band .hero-cta{ justify-content:center; margin-top:34px; }
+
+  footer{ padding: 60px 0 40px; }
+  .footer-inner{
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px;
+    padding-top: 32px;
+    border-top: 1px solid var(--line);
+  }
+  .footer-top{ display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap: 30px; margin-bottom:20px;}
+  .footer-brand img{ height:28px; margin-bottom:14px; }
+  .footer-brand p{ font-size:.88rem; max-width:280px; }
+  .social{ display:flex; gap:12px; }
+  .social a{
+    width:40px; height:40px; border-radius:50%;
+    border: 1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+    transition: background .25s ease, border-color .25s ease, transform .25s ease;
+  }
+  .social a:hover{ background: var(--gradient); border-color:transparent; transform: translateY(-3px); }
+  .social a:hover svg path{ fill: white; }
+  .foot-links{ display:flex; gap:28px; font-size:.88rem; color:var(--ink-soft); }
+  .foot-copy{ font-size:.82rem; color: var(--ink-soft); }
+
+  /* ---------- Reveal on scroll ---------- */
+  .reveal{ opacity:0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.in-view{ opacity:1; transform: translateY(0); }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .reveal, .p-node{ transition:none; opacity:1; transform:none; }
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 900px){
+    .offer-grid{ grid-template-columns: 1fr; }
+    .support-grid{ grid-template-columns: repeat(2, 1fr); }
+    .why-grid{ grid-template-columns: 1fr; }
+    .team-grid{ grid-template-columns: 1fr; }
+    .checklist{ grid-template-columns: 1fr; }
+    .p-step{
+      grid-template-columns: 40px 1fr;
+      grid-template-areas: "node content";
+    }
+    .p-step:nth-child(even){ grid-template-areas: "node content"; }
+    .p-node{ grid-area: node; }
+    .p-step:nth-child(odd) .p-content, .p-step:nth-child(even) .p-content{
+      grid-area: content; justify-self:start; text-align:left; padding-left: 4px;
+    }
+    .process-svg-path{ left: 20px; width: 3px; }
+  }
+  @media (max-width: 760px){
+    .support-services{ padding: 70px 0 80px; }
+    .support-grid{ grid-template-columns: 1fr; }
+    .nav-links{
+      position: fixed; top:66px; left:0; right:0;
+      height: calc(100vh - 66px);
+      background: var(--bg);
+      flex-direction:column; align-items:flex-start; gap:0;
+      padding: 10px 28px 40px;
+      transform: translateX(100%);
+      transition: transform .35s ease;
+      overflow-y: auto;
+    }
+    .nav-links.open{ transform: translateX(0); }
+    .nav-links a:not(.btn){ width:100%; padding: 16px 0; border-bottom:1px solid var(--line); }
+    .nav-links .btn{ margin-top: 20px; }
+    .menu-toggle{ display:block; }
+    .hero{ padding: 60px 0 70px; }
+    .footer-top{ flex-direction:column; }
+  }
+
+  /* ---------- Contato: headline + WhatsApp alternativo ---------- */
+  .contact-section{ padding: 90px 0 110px; }
+  .contact-intro{ text-align:center; max-width:680px; margin:0 auto 34px; }
+  .contact-intro .mono{ color: var(--teal); display:block; margin-bottom:14px; }
+  .contact-intro h2{
+    font-size: clamp(2rem, 4.2vw, 3rem); line-height:1.1;
+    font-weight: 700; -webkit-text-stroke: .6px var(--ink); letter-spacing:-.01em;
+  }
+  .contact-intro p{ margin-top:18px; font-size:1.05rem; max-width:560px; margin-left:auto; margin-right:auto; }
+
+  .trust-strip{
+    margin-top:22px; text-align:center; color: var(--ink-soft);
+    font-size:.78rem; letter-spacing:.03em;
+  }
+
+  .btn-whatsapp{
+    background: #25D366; color: var(--white);
+    box-shadow: 0 12px 30px -10px rgba(37,211,102,.55);
+  }
+  .btn-whatsapp:hover{ transform: translateY(-2px); box-shadow: 0 16px 36px -10px rgba(37,211,102,.65); }
+  .btn-block{ width:100%; justify-content:center; }
+  .btn[disabled]{ opacity:.6; cursor:not-allowed; transform:none !important; }
+
+  .contact-body{
+    display:grid; grid-template-columns: 1.15fr .85fr; gap:28px;
+    align-items:start; max-width: 980px; margin: 40px auto 0;
+  }
+
+  .form-shell{
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 28px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    min-height: 380px;
+    display:flex; flex-direction:column;
+  }
+
+  .wa-card-standalone{
+    background: var(--ink);
+    border-radius: 28px;
+    padding: 40px 34px;
+    display:flex; flex-direction:column;
+    min-height: 380px;
+  }
+  .wa-icon-circle{
+    width: 52px; height:52px; border-radius: 14px;
+    background: rgba(37,211,102,.14);
+    display:flex; align-items:center; justify-content:center;
+    margin-bottom: 22px;
+  }
+  .wa-card-standalone h3{ color: var(--white); font-size: 1.28rem; margin-bottom: 10px; }
+  .wa-card-standalone p{ color: rgba(255,255,255,.62); font-size: .96rem; flex:1; }
+  .wa-card-standalone .btn{ margin-top: 26px; align-self:flex-start; }
+
+  .form-title{
+    font-family:'Space Grotesk', sans-serif; font-weight:700;
+    font-size: 1.28rem; color: var(--ink);
+    padding: 38px 44px 0;
+  }
+
+  form.md-form{
+    flex:1;
+    padding: 24px 44px 44px;
+    display:flex; flex-direction:column;
+    justify-content:center;
+    gap:26px;
+  }
+
+  .form-answered{ display:flex; flex-direction:column; gap:10px; }
+  .answered-chip{
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+    background: var(--bg-soft); border:1px solid var(--line); border-radius:12px;
+    padding: 11px 14px; animation: stepIn .3s ease;
+  }
+  .answered-info{ display:flex; flex-direction:column; gap:2px; min-width:0; }
+  .answered-label{ font-size:.72rem; color: var(--ink-soft); }
+  .answered-value{ font-size:.92rem; font-weight:600; color: var(--ink); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .answered-edit{
+    flex-shrink:0; background:none; border:none; cursor:pointer;
+    width:30px; height:30px; border-radius:8px; display:flex; align-items:center; justify-content:center;
+    color: var(--teal); transition: background .2s ease;
+  }
+  .answered-edit:hover{ background: rgba(27,122,122,.12); }
+
+  .form-step{ display:flex; flex-direction:column; gap:22px; animation: stepIn .35s ease; }
+  @keyframes stepIn{ from{ opacity:0; transform: translateY(10px); } to{ opacity:1; transform: translateY(0); } }
+  .form-step .field label{ font-size:1.05rem; }
+  .form-step .field input{ font-size:1.1rem; padding:18px 20px; }
+
+  .form-step .btn{ padding: 17px 26px; font-size: 1rem; }
+
+  .field{ display:flex; flex-direction:column; gap:10px; text-align:left; }
+  .field label{ font-size:.86rem; font-weight:600; color: var(--ink); }
+  .field label .req{ color: var(--teal); margin-left:2px; }
+  .field input{
+    font-family:'Inter', sans-serif; font-size: .98rem;
+    padding: 14px 16px; border-radius: 12px;
+    border: 1.5px solid var(--line);
+    background: var(--bg); color: var(--ink); outline:none;
+    transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+  }
+  .field input::placeholder{ color: rgba(62,94,90,.45); }
+  .field input:focus{ border-color: var(--teal); background: var(--white); box-shadow: 0 0 0 4px rgba(27,122,122,.12); }
+  .field small.err{ display:none; font-size:.78rem; color:#C24545; font-weight:500; }
+  .field.invalid input{ border-color:#C24545; }
+  .field.invalid small.err{ display:block; }
+  .md-form .submit-row{ margin-top: 8px; }
+  .form-foot-note{ margin-top: 6px; font-size: .78rem; color: var(--ink-soft); text-align:center; }
+
+  .form-success{ display:none; padding: 70px 44px 64px; text-align:center; }
+  .form-success.show{ display:block; }
+  form.md-form.hide{ display:none; }
+  .success-icon{ width:64px; height:64px; border-radius:50%; background: var(--gradient); display:flex; align-items:center; justify-content:center; margin: 0 auto 24px; }
+  .form-success h3{ font-family:'Space Grotesk',sans-serif; font-size:1.3rem; margin-bottom:10px; }
+  .form-success p{ max-width: 420px; margin: 0 auto; font-size:.96rem; }
+  .form-success .btn{ margin-top: 28px; }
+
+  .wa-float{
+    position: fixed; right: 22px; bottom: 22px; z-index: 200;
+    width: 60px; height:60px; border-radius: 50%;
+    background: #25D366;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow: 0 14px 30px -8px rgba(37,211,102,.6);
+    transition: transform .25s ease;
+  }
+  .wa-float:hover{ transform: scale(1.08); }
+
+  @media (max-width: 880px){
+    .contact-body{ grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 820px){
+    form.md-form{ padding: 20px 26px 36px; }
+    .form-title{ padding: 30px 26px 0; }
+    .wa-card-standalone{ padding: 32px 26px; }
+    .contact-section{ padding: 70px 0 90px; }
+  }
+
+  /* ---------- Roteamento entre páginas (mesma HTML) ---------- */
+  .back-link{ display:none; }
+  body.route-contato .nav-inner-links{ display:none !important; }
+  body.route-contato .cta-link{ display:none; }
+  body.route-contato .back-link{ display:inline-flex; }
+  [hidden]{ display:none !important; }
+</style>
+</head>
+<body>
+
+<header id="site-header">
+  <div class="wrap header-inner">
+    <a href="#top" class="logo"><img src="assets/logo_dark.png" alt="Marca Direta"></a>
+    <div class="nav-links" id="navLinks">
+      <div class="nav-inner-links" id="navInnerLinks" style="display:contents;">
+        <a href="#oferecemos">O que oferecemos</a>
+        <a href="#como-funciona">Como funciona</a>
+        <a href="#quem-somos">Quem somos</a>
+        <a href="#faq">Perguntas frequentes</a>
+      </div>
+      <a href="#top" class="btn btn-ghost back-link">← Voltar para o site</a>
+      <a href="#contato" class="btn btn-primary cta-link">Verificar disponibilidade</a>
+    </div>
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="top" data-page="home">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-wrap">
+    <div class="hero-inner">
+      <span class="eyebrow mono">Registro de marcas · Atuação em todo o Brasil</span>
+      <h1>Proteja sua marca <span class="accent">agora mesmo contra a concorrência.</span></h1>
+      <p class="lead">A Marca Direta conduz todo o processo de registro no INPI com acompanhamento do início ao fim. Inlcui pesquisa de anterioridade, protocolo, monitoramento e defesa em caso de conflito.</p>
+      <div class="hero-cta">
+        <a href="#contato" class="btn btn-primary">Verificar disponibilidade agora</a>
+        <a href="#como-funciona" class="btn btn-ghost">Ver como funciona</a>
+      </div>
+      <ul class="checklist">
+        <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.2 11.5L13 4.5" stroke="#1B7A7A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Profissionais com experiência no mercado</li>
+        <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.2 11.5L13 4.5" stroke="#1B7A7A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Atuação nacional em todo o Brasil</li>
+        <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.2 11.5L13 4.5" stroke="#1B7A7A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Análise estratégica sobre classes e expansão</li>
+        <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.2 11.5L13 4.5" stroke="#1B7A7A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Acompanhamento do início ao fim do caso</li>
+      </ul>
+    </div>
+
+    <div class="hero-verifier">
+      <span class="card-label mono">Verificador de marcas</span>
+
+      <div class="search-box">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1B7A7A" stroke-width="2.4"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <span id="typedName"></span><span id="typedCaret"></span>
+      </div>
+      <div class="verifier-result ok" id="verifierResult" style="display:none;"></div>
+      <div class="verifier-recent">
+        <div class="r-item"><span>Café <b>Raízes</b> — classe 43</span><span class="r-tag ok">Disponível</span></div>
+        <div class="r-item"><span><b>NovaTech</b> Soluções — classe 42</span><span class="r-tag no">Em uso</span></div>
+        <div class="r-item"><span>Estúdio <b>Lumen</b> — classe 41</span><span class="r-tag ok">Disponível</span></div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- VÍDEO -->
+  <section class="video-section">
+    <div class="wrap">
+      <div class="video-wrapper reveal">
+        <div class="video-frame">
+          <iframe
+            src="https://www.youtube.com/embed/L_ofGTp36R8"
+            title="Conheça a Marca Direta"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function(){
+      var names = [
+        {text:"Café Raízes", ok:true},
+        {text:"NovaTech Soluções", ok:false},
+        {text:"Estúdio Lumen", ok:true}
+      ];
+      var el = document.getElementById('typedName');
+      var res = document.getElementById('verifierResult');
+      if(!el || !res) return;
+      var i = 0;
+      function typeOut(str, cb){
+        var pos = 0; el.textContent = '';
+        var t = setInterval(function(){
+          el.textContent = str.slice(0, pos+1); pos++;
+          if(pos >= str.length){ clearInterval(t); cb(); }
+        }, 55);
+      }
+      function eraseOut(cb){
+        var t = setInterval(function(){
+          var s = el.textContent; el.textContent = s.slice(0, -1);
+          if(el.textContent.length === 0){ clearInterval(t); cb(); }
+        }, 28);
+      }
+      function cycle(){
+        var item = names[i % names.length];
+        res.style.display = 'none';
+        typeOut(item.text, function(){
+          setTimeout(function(){
+            res.className = 'verifier-result ' + (item.ok ? 'ok' : 'no');
+            res.style.display = 'flex';
+            res.textContent = item.ok ? '✓ Disponível para registro' : '✕ Já registrada nesta classe';
+            setTimeout(function(){
+              eraseOut(function(){ i++; cycle(); });
+            }, 1800);
+          }, 300);
+        });
+      }
+      cycle();
+    })();
+  </script>
+
+  <!-- O QUE OFERECEMOS -->
+  <section class="offer" id="oferecemos">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="mono">O que oferecemos</span>
+        <h2>Três frentes, um único acompanhamento</h2>
+        <p>Você não contrata apenas um protocolo de pedido, mas também acompanhamento durante todo o processo e o mais importante, transparência em tudo.</p>
+      </div>
+      <div class="offer-grid">
+        <div class="offer-card reveal">
+          <div class="offer-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2L20 6V12C20 17 16.5 20.5 12 22C7.5 20.5 4 17 4 12V6L12 2Z" stroke="#1B7A7A" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 12L11 14L15.5 9.5" stroke="#3ECF4A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <span class="offer-num mono">01</span>
+          <h3>Registro e proteção de marca</h3>
+          <p>Pedido nominativo, figurativo ou misto, com acompanhamento completo até a concessão junto ao INPI.</p>
+        </div>
+        <div class="offer-card reveal">
+          <div class="offer-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#1B7A7A" stroke-width="1.6"/><path d="M20 20L16.5 16.5" stroke="#3ECF4A" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+          <span class="offer-num mono">02</span>
+          <h3>Defesa e resolução de conflitos</h3>
+          <p>Em caso de oposição ao registro por terceiros, a nossa equipe atua em sua defesa perante o INPI.</p>
+        </div>
+        <div class="offer-card reveal">
+          <div class="offer-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3L4 6V11C4 16 7.5 19.5 12 21C16.5 19.5 20 16 20 11V6L12 3Z" stroke="#1B7A7A" stroke-width="1.6"/><path d="M12 8V12.5" stroke="#3ECF4A" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="15.3" r="1" fill="#3ECF4A"/></svg></div>
+          <span class="offer-num mono">03</span>
+          <h3>Transparência e confiança</h3>
+          <p>Todos os andamentos são encaminhados à você com explicações e próximos passos. Entre em contato a qualquer momento para tirar dúvidas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- COMO FUNCIONA -->
+  <section class="process" id="como-funciona">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <span class="mono">Como funciona</span>
+        <h2>Um caminho jurídico, do briefing à concessão</h2>
+        <p>Seis etapas conduzidas junto a você, cada uma com um objetivo claro dentro do trâmite no INPI.</p>
+      </div>
+
+      <div class="process-path-wrap">
+        <svg class="process-svg-path" id="flowSvg" viewBox="0 0 900 1000" preserveAspectRatio="none" fill="none">
+          <path id="flowPath" d="M 630 30 C 630 130, 270 130, 270 200 C 270 280, 630 280, 630 370 C 630 450, 270 450, 270 530 C 270 610, 630 610, 630 700 C 630 780, 270 780, 270 850"
+            stroke="url(#flowGrad)" stroke-width="2.5" stroke-dasharray="1 9" stroke-linecap="round"/>
+          <defs>
+            <linearGradient id="flowGrad" x1="0" y1="0" x2="0" y2="1000" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#3ECF4A"/>
+              <stop offset="1" stop-color="#1B7A7A"/>
+            </linearGradient>
+          </defs>
+        </svg>
+
+        <div class="process-steps">
+          <div class="p-step reveal">
+            <div class="p-content"><h3>Briefing</h3><p>Consulta para entender a marca, seu uso pretendido e as classes necessárias de proteção.</p></div>
+            <div class="p-node">01</div>
+          </div>
+          <div class="p-step reveal">
+            <div class="p-content"><h3>Pesquisa de anterioridade</h3><p>Busca no banco do INPI e na internet para identificar riscos e marcas semelhantes já existentes.</p></div>
+            <div class="p-node">02</div>
+          </div>
+          <div class="p-step reveal">
+            <div class="p-content"><h3>Protocolo</h3><p>Preenchimento do pedido no e-INPI, upload da documentação e pagamento da GRU.</p></div>
+            <div class="p-node">03</div>
+          </div>
+          <div class="p-step reveal">
+            <div class="p-content"><h3>Acompanhamento</h3><p>Publicação na RPI, controle do prazo de oposição e resposta a manifestações de terceiros.</p></div>
+            <div class="p-node">04</div>
+          </div>
+          <div class="p-step reveal">
+            <div class="p-content"><h3>Defesa e recursos</h3><p>Resposta a eventuais oposições e apresentação de recursos administrativos, se necessário.</p></div>
+            <div class="p-node">05</div>
+          </div>
+          <div class="p-step reveal">
+            <div class="p-content"><h3>Concessão</h3><p>Pagamento da taxa e emissão do certificado — registro válido por 10 anos, renovável.</p></div>
+            <div class="p-node">06</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- POR QUE REGISTRAR -->
+  <section class="why">
+    <div class="wrap why-grid">
+      <div class="reveal">
+        <span class="mono" style="color:#7FE0A8;">Por que registrar</span>
+        <h2>Uma marca sem registro é um ativo em aberto.</h2>
+        <p class="why-lead">Sem o registro, qualquer concorrente pode reivindicar o mesmo nome antes de você e usar isso contra o seu negócio.</p>
+      </div>
+      <div class="why-list reveal">
+        <div class="why-item">
+          <div class="why-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2L20 6V12C20 17 16.5 20.5 12 22C7.5 20.5 4 17 4 12V6L12 2Z" stroke="#7FE0A8" stroke-width="1.6"/></svg></div>
+          <div><h4>Proteção legal</h4><p>Segurança jurídica contra cópias, imitações e uso indevido da sua marca por terceiros.</p></div>
+        </div>
+        <div class="why-item">
+          <div class="why-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 20V10M12 20V4M20 20V14" stroke="#7FE0A8" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+          <div><h4>Ativo intangível</h4><p>Um registro valorizado em processos de venda, captação e negociação com investidores.</p></div>
+        </div>
+        <div class="why-item">
+          <div class="why-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="8" cy="8" r="3" stroke="#7FE0A8" stroke-width="1.6"/><circle cx="16" cy="16" r="3" stroke="#7FE0A8" stroke-width="1.6"/><path d="M10.5 9.5L13.5 14.5" stroke="#7FE0A8" stroke-width="1.6"/></svg></div>
+          <div><h4>Expansão do negócio</h4><p>Base segura para franquear, licenciar ou expandir a marca para novos mercados.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUEM SOMOS -->
+  <section class="team" id="quem-somos">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="mono">Quem somos</span>
+        <h2>Condução jurídica direta, sem intermediários</h2>
+      </div>
+      <div class="team-grid">
+        <div class="team-card reveal">
+          <div class="avatar"><img src="assets/team/felipe.png" alt="Felipe Grossi Parreiras"></div>
+          <div>
+            <h3>Felipe Grossi Parreiras</h3>
+            <div class="role">Advogado — OAB/MG 199.259</div>
+            <p class="cred">Especialista em Proteção de Dados e Registro de Marcas.</p>
+          </div>
+        </div>
+        <div class="team-card reveal">
+          <div class="avatar"><img src="assets/team/thais.png" alt="Thaís Botelho Machado"></div>
+          <div>
+            <h3>Thaís Botelho Machado</h3>
+            <div class="role">Crescimento e Relacionamento</div>
+            <p class="cred">Consultora de Crescimento e Relacionamento com Clientes.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVIÇOS COMPLEMENTARES -->
+  <section class="support-services">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <span class="mono">Serviços complementares</span>
+        <h2>Uma presença digital completa para o seu negócio</h2>
+        <p>Além da proteção da sua marca, cuidamos de pontos essenciais para colocar sua empresa no lugar certo e fortalecer sua presença online.</p>
+      </div>
+      <div class="support-grid">
+        <div class="support-card reveal">
+          <div class="support-icon"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M20 10.5C20 15.5 12 21 12 21S4 15.5 4 10.5C4 6.91 7.13 4 12 4S20 6.91 20 10.5Z" stroke="#1B7A7A" stroke-width="1.6"/><circle cx="12" cy="10" r="2.5" stroke="#3ECF4A" stroke-width="1.6"/></svg></div>
+          <span class="offer-num mono">01</span>
+          <h3>Google Meu Negócio</h3>
+          <p>Criação e configuração do perfil da sua empresa no Google para facilitar que clientes encontrem seu negócio.</p>
+        </div>
+        <div class="support-card reveal">
+          <div class="support-icon"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="16" rx="2" stroke="#1B7A7A" stroke-width="1.6"/><path d="M3 8H21M8 4V8M16 4V8" stroke="#3ECF4A" stroke-width="1.6" stroke-linecap="round"/><path d="M7 13H10M14 13H17M7 16H12" stroke="#1B7A7A" stroke-width="1.4" stroke-linecap="round"/></svg></div>
+          <span class="offer-num mono">02</span>
+          <h3>Criação de sites</h3>
+          <p>Sites profissionais, responsivos e pensados para apresentar sua empresa com clareza e credibilidade.</p>
+        </div>
+        <div class="support-card reveal">
+          <div class="support-icon"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="12" rx="2" stroke="#1B7A7A" stroke-width="1.6"/><path d="M3 10H21M7 14H10" stroke="#3ECF4A" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+          <span class="offer-num mono">03</span>
+          <h3>Proteção de domínios</h3>
+          <p>Orientação e registro de domínios para proteger o endereço digital da sua empresa e evitar conflitos.</p>
+        </div>
+        <div class="support-card reveal">
+          <div class="support-icon"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"><rect x="5" y="3" width="14" height="18" rx="2" stroke="#1B7A7A" stroke-width="1.6"/><path d="M9 7H15M9 11H15M9 15H13" stroke="#3ECF4A" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+          <span class="offer-num mono">04</span>
+          <h3>Registro de CNPJ</h3>
+          <p>Auxílio no processo de abertura e formalização da empresa para você começar seu negócio de forma organizada.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FAQ -->
+  <section class="faq" id="faq">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="mono">Perguntas frequentes</span>
+        <h2>O que você precisa saber antes de começar</h2>
+      </div>
+      <div class="faq-list reveal">
+        <div class="faq-item">
+          <button class="faq-q"><span>Quanto tempo leva o processo?</span><span class="plus"></span></button>
+          <div class="faq-a"><p>O trâmite completo leva, em média, entre 8 e 14 meses, contados do protocolo até a concessão do registro pelo INPI.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q"><span>Quanto tempo dura o registro da minha marca?</span><span class="plus"></span></button>
+          <div class="faq-a"><p>10 anos, com possibilidade de renovação por períodos iguais e sucessivos.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q"><span>Qual o valor do registro?</span><span class="plus"></span></button>
+          <div class="faq-a"><p>O custo varia conforme a necessidade do cliente, a complexidade do caso e a quantidade de registros solicitados (nominativo, figurativo ou misto).</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q"><span>Tem alguém usando minha marca, e agora?</span><span class="plus"></span></button>
+          <div class="faq-a"><p>Existe uma série de medidas cabíveis para proteger sua marca contra concorrentes e pessoas agindo de má-fé — avaliamos o cenário e indicamos o caminho mais adequado.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q"><span>Posso fazer uma consulta sem compromisso?</span><span class="plus"></span></button>
+          <div class="faq-a"><p>Sim. Entre em contato gratuitamente para esclarecer dúvidas e analisarmos juntos a melhor estratégia para o seu caso.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- PÁGINA DE CAPTAÇÃO (view separada, dentro do mesmo HTML) -->
+<main id="page-contato" data-page="contato" hidden>
+
+  <!-- VÍDEO -->
+  <section class="video-section">
+    <div class="wrap">
+      <div class="video-wrapper reveal">
+        <div class="video-frame">
+          <iframe
+            src="https://www.youtube.com/embed/L_ofGTp36R8"
+            title="Conheça a Marca Direta"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTATO: HEADLINE DIRETO + FORMULÁRIO PROGRESSIVO -->
+  <section class="contact-section" id="contato">
+    <div class="wrap">
+
+      <div class="contact-intro reveal">
+        <span class="mono">Consulta gratuita de marca</span>
+        <h2>Verifique se o nome da sua empresa está disponível para registro</h2>
+        <p>Sem custo e sem compromisso.</p>
+        <p class="trust-strip">Sem custo na consulta &nbsp;·&nbsp; Atuação em todo o Brasil</p>
+      </div>
+
+      <div class="contact-body">
+
+        <div class="form-shell reveal" id="formulario">
+
+        <div class="form-title"><h3>Verifique aqui:</h3></div>
+
+        <!-- Destino do envio: Google Forms -->
+        <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+
+        <form
+          class="md-form"
+          id="mdForm"
+          action="https://docs.google.com/forms/d/e/1FAIpQLSdyERrdkY4xWKUwrcwKsq9qpMzHYnTvuh_88bVoHJVtSL3lSA/formResponse"
+          method="POST"
+          target="hidden_iframe">
+
+          <div class="form-answered" id="formAnswered"></div>
+
+          <!-- ETAPA 1 -->
+          <div class="form-step" id="step1" data-step="1">
+            <div class="field">
+              <label for="f-marca">Qual o nome da sua empresa?<span class="req">*</span></label>
+              <input type="text" id="f-marca" name="entry.1409856353" placeholder="Ex: Marca Direta" required autocomplete="off" autofocus>
+              <small class="err">Preencha o nome da sua empresa.</small>
+            </div>
+            <button type="button" class="btn btn-primary btn-block step-next">Continuar</button>
+          </div>
+
+          <!-- ETAPA 2 -->
+          <div class="form-step" id="step2" data-step="2" hidden>
+            <div class="field">
+              <label for="f-ramo">Qual o seu ramo de atuação?<span class="req">*</span></label>
+              <input type="text" id="f-ramo" name="entry.1676182226" placeholder="Ex: Moda, alimentação, tecnologia..." required autocomplete="off">
+              <small class="err">Conte pra gente o seu ramo de atuação.</small>
+            </div>
+            <button type="button" class="btn btn-primary btn-block step-next">Continuar</button>
+          </div>
+
+          <!-- ETAPA 3: DADOS DE CONTATO -->
+          <div class="form-step" id="step3" data-step="3" hidden>
+            <div class="field">
+              <label for="f-nome">Qual o seu nome?<span class="req">*</span></label>
+              <input type="text" id="f-nome" name="entry.553468063" placeholder="Seu nome completo" required autocomplete="name">
+              <small class="err">Preencha o seu nome.</small>
+            </div>
+
+            <div class="field">
+              <label for="f-whats">Qual o seu WhatsApp? (com DDD)<span class="req">*</span></label>
+              <input type="tel" id="f-whats" name="entry.1394606880" placeholder="(00) 00000-0000" inputmode="numeric" autocomplete="tel" maxlength="15" pattern="\(\d{2}\) \d{5}-\d{4}" required>
+              <small class="err">Informe um número válido, no formato (11) 91234-5678.</small>
+            </div>
+
+            <div class="field">
+              <label for="f-email">Qual seu melhor e-mail para contato?<span class="req">*</span></label>
+              <input type="email" id="f-email" name="entry.1646529745" placeholder="voce@email.com" required autocomplete="email">
+              <small class="err">Informe um e-mail válido.</small>
+            </div>
+
+            <div class="submit-row">
+              <button type="submit" class="btn btn-primary btn-block" id="mdSubmitBtn">Verificar disponibilidade</button>
+            </div>
+            <p class="form-foot-note">Ao enviar, você concorda em ser contatado pela nossa equipe pelo WhatsApp ou e-mail.</p>
+          </div>
+
+        </form>
+
+        <div class="form-success" id="mdSuccess">
+          <div class="success-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M4 12.5L9.2 17.5L20 5.5" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Recebemos suas informações!</h3>
+          <p>Nossa equipe vai analisar os dados e entrar em contato pelo WhatsApp em breve com o resultado da consulta.</p>
+          <a href="https://wa.me/5531998984257?text=Ol%C3%A1!%20Acabei%20de%20enviar%20o%20formul%C3%A1rio%20de%20consulta%20de%20marca." target="_blank" rel="noopener" class="btn btn-whatsapp">Tirar dúvidas no WhatsApp</a>
+        </div>
+
+        </div>
+
+        <div class="wa-card-standalone reveal">
+          <div class="wa-icon-circle">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.5 2 2 6.5 2 12C2 13.9 2.5 15.6 3.4 17.1L2 22L7.1 20.7C8.5 21.5 10.2 22 12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2Z" stroke="#25D366" stroke-width="1.6" stroke-linejoin="round"/><g transform="translate(-1.15,-1.8)"><path d="M8.5 8.7C8.7 8.2 9 8.2 9.3 8.2C9.5 8.2 9.7 8.2 9.9 8.7C10.1 9.2 10.6 10.4 10.6 10.5C10.7 10.6 10.7 10.8 10.6 10.9C10.4 11.3 10.1 11.5 10 11.7C9.8 11.9 9.7 12.1 9.9 12.4C10.1 12.7 10.8 13.8 11.8 14.6C13 15.6 13.9 15.9 14.2 16.1C14.5 16.2 14.7 16.2 14.9 16C15.1 15.7 15.5 15.3 15.7 15C15.9 14.8 16.1 14.8 16.4 14.9C16.7 15 17.9 15.6 18.2 15.7C18.5 15.9 18.7 15.9 18.7 16.2C18.8 16.5 18.8 17.2 18.4 17.9C18 18.6 16.9 19.3 16.4 19.3C15.8 19.4 15.4 19.4 14.1 18.9C12.5 18.3 10.5 17 9 15.1C8.6 14.6 7.5 13.2 7.5 11.7C7.5 10.2 8.3 9.5 8.5 8.7Z" fill="#25D366"/></g></svg>
+          </div>
+          <h3>Prefere ir direto ao ponto?</h3>
+          <p>Chame a nossa equipe agora mesmo pelo WhatsApp e já tire suas dúvidas sobre o registro da sua marca.</p>
+          <a href="https://wa.me/5531998984257?text=Ol%C3%A1!%20Quero%20verificar%20a%20disponibilidade%20da%20minha%20marca." target="_blank" rel="noopener" class="btn btn-whatsapp">Chamar no WhatsApp</a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<a href="https://wa.me/5531998984257?text=Ol%C3%A1!%20Quero%20verificar%20a%20disponibilidade%20da%20minha%20marca." target="_blank" rel="noopener" class="wa-float" aria-label="Falar no WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.5 2 2 6.5 2 12C2 13.9 2.5 15.6 3.4 17.1L2 22L7.1 20.7C8.5 21.5 10.2 22 12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2Z" stroke="white" stroke-width="1.6" stroke-linejoin="round"/><g transform="translate(-1.15,-1.8)"><path d="M8.5 8.7C8.7 8.2 9 8.2 9.3 8.2C9.5 8.2 9.7 8.2 9.9 8.7C10.1 9.2 10.6 10.4 10.6 10.5C10.7 10.6 10.7 10.8 10.6 10.9C10.4 11.3 10.1 11.5 10 11.7C9.8 11.9 9.7 12.1 9.9 12.4C10.1 12.7 10.8 13.8 11.8 14.6C13 15.6 13.9 15.9 14.2 16.1C14.5 16.2 14.7 16.2 14.9 16C15.1 15.7 15.5 15.3 15.7 15C15.9 14.8 16.1 14.8 16.4 14.9C16.7 15 17.9 15.6 18.2 15.7C18.5 15.9 18.7 15.9 18.7 16.2C18.8 16.5 18.8 17.2 18.4 17.9C18 18.6 16.9 19.3 16.4 19.3C15.8 19.4 15.4 19.4 14.1 18.9C12.5 18.3 10.5 17 9 15.1C8.6 14.6 7.5 13.2 7.5 11.7C7.5 10.2 8.3 9.5 8.5 8.7Z" fill="white"/></g></svg>
+</a>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="assets/logo_dark.png" alt="Marca Direta">
+        <p>Registro no INPI com acompanhamento do início ao fim. Protocolo, monitoramento e defesa.</p>
+      </div>
+      <div class="social">
+        <a href="https://www.instagram.com/marca.direta/" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><rect x="2.2" y="2.2" width="19.6" height="19.6" rx="5.2" stroke="#0E2B28" stroke-width="1.4"/><circle cx="12" cy="12" r="3.6" stroke="#0E2B28" stroke-width="1.4"/><circle cx="17.4" cy="6.6" r="1" fill="#0E2B28"/></svg>
+        </a>
+        <a href="#contato" aria-label="Fale com a gente">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5" stroke="#0E2B28" stroke-width="1.4"/><path d="M3.5 6L12 13L20.5 6" stroke="#0E2B28" stroke-width="1.4" stroke-linecap="round"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-inner">
+      <div class="foot-links">
+        <a href="#oferecemos">O que oferecemos</a>
+        <a href="#como-funciona">Como funciona</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div class="foot-copy">© <span id="year"></span> Marca Direta. Todos os direitos reservados.</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ---- Roteamento entre páginas (Landing page / Página de captação) ----
+  // As duas "páginas" vivem no mesmo arquivo HTML, mas só uma fica visível
+  // por vez. A navegação usa a âncora da URL (#contato, #formulario) como rota.
+  const HOME_TITLE = document.title;
+  const CONTATO_TITLE = 'Fale com a Marca Direta — Consulta de disponibilidade de marca';
+  const pageHome = document.getElementById('top');
+  const pageContato = document.getElementById('page-contato');
+
+  function currentRoute(){
+    const hash = window.location.hash.replace('#', '');
+    return (hash === 'contato' || hash === 'formulario') ? 'contato' : 'home';
+  }
+
+  function applyRoute(){
+    const isContato = currentRoute() === 'contato';
+    pageHome.hidden = isContato;
+    pageContato.hidden = !isContato;
+    document.body.classList.toggle('route-contato', isContato);
+    document.title = isContato ? CONTATO_TITLE : HOME_TITLE;
+
+    const hash = window.location.hash.replace('#', '');
+    const target = hash ? document.getElementById(hash) : null;
+    if(target){
+      requestAnimationFrame(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }
+
+  window.addEventListener('hashchange', applyRoute);
+  applyRoute();
+
+  // header scroll state
+  const header = document.getElementById('site-header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 8);
+  }, { passive:true });
+
+  // mobile nav
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+  menuToggle.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    menuToggle.setAttribute('aria-expanded', open);
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    menuToggle.setAttribute('aria-expanded', false);
+  }));
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const q = item.querySelector('.faq-q');
+    const a = item.querySelector('.faq-a');
+    if(item.classList.contains('open')){ a.style.maxHeight = a.scrollHeight + 'px'; }
+    q.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(other => {
+        if(other !== item){
+          other.classList.remove('open');
+          other.querySelector('.faq-a').style.maxHeight = null;
+        }
+      });
+      item.classList.toggle('open', !isOpen);
+      a.style.maxHeight = !isOpen ? a.scrollHeight + 'px' : null;
+    });
+  });
+
+  // scroll reveal
+  const revealEls = document.querySelectorAll('.reveal, .p-step');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('in-view');
+      }
+    });
+  }, { threshold: 0.18 });
+  revealEls.forEach(el => io.observe(el));
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // ---- Formulário de contato (envia para o Google Forms via iframe oculto) ----
+  const mdForm = document.getElementById('mdForm');
+  if(mdForm){
+    const mdSuccess = document.getElementById('mdSuccess');
+    const mdSubmitBtn = document.getElementById('mdSubmitBtn');
+    const mdIframe = document.getElementById('hidden_iframe');
+    const formAnswered = document.getElementById('formAnswered');
+    let mdSubmitting = false;
+
+    // Máscara do WhatsApp: aceita só números e formata como (DD) 9XXXX-XXXX
+    const mdPhoneInput = document.getElementById('f-whats');
+    if(mdPhoneInput){
+      mdPhoneInput.addEventListener('input', () => {
+        let digits = mdPhoneInput.value.replace(/\D/g, '').slice(0, 11);
+        let formatted = digits;
+        if(digits.length > 0) formatted = '(' + digits.slice(0, 2);
+        if(digits.length >= 3) formatted += ') ' + digits.slice(2, 7);
+        if(digits.length >= 8) formatted += '-' + digits.slice(7, 11);
+        mdPhoneInput.value = formatted;
+      });
+      mdPhoneInput.addEventListener('keypress', (e) => {
+        if(!/[0-9]/.test(e.key)) e.preventDefault();
+      });
+    }
+
+    function validateFields(container){
+      let valid = true;
+      container.querySelectorAll('.field').forEach(field => {
+        const input = field.querySelector('input');
+        const ok = input.checkValidity();
+        field.classList.toggle('invalid', !ok);
+        if(!ok) valid = false;
+      });
+      return valid;
+    }
+
+    function mdValidate(){
+      const visibleStep = mdForm.querySelector('.form-step:not([hidden])');
+      return visibleStep ? validateFields(visibleStep) : true;
+    }
+
+    mdForm.querySelectorAll('input').forEach(input => {
+      input.addEventListener('input', () => input.closest('.field').classList.remove('invalid'));
+    });
+
+    function goToStep(n){
+      // Ao editar uma etapa anterior, remove os "chips" dela em diante
+      formAnswered.querySelectorAll('.answered-chip').forEach(chip => {
+        if(parseInt(chip.dataset.step, 10) >= n) chip.remove();
+      });
+      mdForm.querySelectorAll('.form-step').forEach(step => {
+        step.hidden = (parseInt(step.dataset.step, 10) !== n);
+      });
+      const input = mdForm.querySelector('.form-step[data-step="' + n + '"] input');
+      if(input) setTimeout(() => input.focus(), 60);
+    }
+
+    function addAnsweredChip(labelText, value, stepNum){
+      const chip = document.createElement('div');
+      chip.className = 'answered-chip';
+      chip.dataset.step = stepNum;
+
+      const info = document.createElement('div');
+      info.className = 'answered-info';
+      const label = document.createElement('span');
+      label.className = 'answered-label';
+      label.textContent = labelText;
+      const val = document.createElement('span');
+      val.className = 'answered-value';
+      val.textContent = value;
+      info.appendChild(label);
+      info.appendChild(val);
+
+      const editBtn = document.createElement('button');
+      editBtn.type = 'button';
+      editBtn.className = 'answered-edit';
+      editBtn.setAttribute('aria-label', 'Editar resposta');
+      editBtn.textContent = '✎';
+      editBtn.addEventListener('click', () => goToStep(stepNum));
+
+      chip.appendChild(info);
+      chip.appendChild(editBtn);
+      formAnswered.appendChild(chip);
+    }
+
+    mdForm.querySelectorAll('.step-next').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const currentStep = btn.closest('.form-step');
+        if(!validateFields(currentStep)) return;
+
+        const stepNum = parseInt(currentStep.dataset.step, 10);
+        const input = currentStep.querySelector('input');
+        const labelText = currentStep.querySelector('label').textContent.replace('*', '').trim();
+
+        addAnsweredChip(labelText, input.value, stepNum);
+        currentStep.hidden = true;
+
+        const nextStep = mdForm.querySelector('.form-step[data-step="' + (stepNum + 1) + '"]');
+        if(nextStep){
+          nextStep.hidden = false;
+          const nextInput = nextStep.querySelector('input');
+          if(nextInput) setTimeout(() => nextInput.focus(), 60);
+        }
+      });
+    });
+
+    // Enter avança para a próxima etapa (nas etapas com um único campo)
+    mdForm.querySelectorAll('.form-step').forEach(step => {
+      const nextBtn = step.querySelector('.step-next');
+      const input = step.querySelector('input');
+      if(nextBtn && input){
+        input.addEventListener('keydown', (e) => {
+          if(e.key === 'Enter'){
+            e.preventDefault();
+            nextBtn.click();
+          }
+        });
+      }
+    });
+
+    mdForm.addEventListener('submit', (e) => {
+      if(!mdValidate()){
+        e.preventDefault();
+        return;
+      }
+      mdSubmitting = true;
+      mdSubmitBtn.disabled = true;
+      mdSubmitBtn.textContent = 'Enviando...';
+    });
+
+    // Como o Google Forms responde dentro do iframe (cross-origin, sem leitura possível),
+    // usamos o evento "load" do iframe após o envio como sinal de sucesso.
+    mdIframe.addEventListener('load', () => {
+      if(!mdSubmitting) return;
+      mdSubmitting = false;
+      mdForm.classList.add('hide');
+      mdSuccess.classList.add('show');
+      mdSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  }
+</script>
+
+</body>
+</html>
