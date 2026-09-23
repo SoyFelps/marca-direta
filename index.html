@@ -1295,6 +1295,16 @@
 
   document.getElementById('year').textContent = new Date().getFullYear();
 
+  // ---- Conversão do Google Ads ----
+  // Disparada apenas quando o envio do formulário é de fato confirmado
+  // (veja o listener "load" do iframe mais abaixo), e não no simples clique
+  // do botão, para não contar tentativas com campo inválido como conversão.
+  function gtag_report_conversion() {
+    gtag('event', 'conversion', {
+        'send_to': 'AW-18394751590/Ti4lCK7jr4IdEObEpsNE'
+    });
+  }
+
   // ---- Formulário de contato (envia para o Google Forms via iframe oculto) ----
   const mdForm = document.getElementById('mdForm');
   if(mdForm){
@@ -1430,6 +1440,7 @@
     mdIframe.addEventListener('load', () => {
       if(!mdSubmitting) return;
       mdSubmitting = false;
+      gtag_report_conversion();
       mdForm.classList.add('hide');
       mdSuccess.classList.add('show');
       mdSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
