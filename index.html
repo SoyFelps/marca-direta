@@ -1490,6 +1490,7 @@
       if(!mdSubmitting) return;
       mdSubmitting = false;
       gtag_report_conversion();
+      if(formTitle) formTitle.textContent = 'Verificação em Andamento';
       mdForm.classList.add('hide');
       mdSuccess.classList.add('show');
       mdSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
