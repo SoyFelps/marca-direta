@@ -612,7 +612,7 @@
 
   .contact-body{
     display:flex; flex-direction:column; gap:18px;
-    align-items:stretch; max-width: 760px; margin: 40px auto 0;
+    align-items:stretch; max-width: 920px; margin: 40px auto 0;
   }
 
   .form-shell{
@@ -682,11 +682,12 @@
 
   .form-step .btn{ padding: 16px 24px; font-size: .95rem; }
   .form-step .field small.err{ grid-column:1 / -1; margin-top:-6px; }
-  .form-step:has(.field:nth-child(2)){
-    grid-template-columns:repeat(2,minmax(0,1fr));
+  .form-step.contact-details-step{
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr) auto;
+    gap:14px 16px;
   }
-  .form-step:has(.field:nth-child(2)) .field:nth-child(3){ grid-column:1 / -1; }
-  .form-step:has(.field:nth-child(2)) .submit-row{ grid-column:1 / -1; }
+  .form-step.contact-details-step .submit-row{ grid-column:auto; margin-top:0; }
+  .form-step.contact-details-step .form-foot-note{ grid-column:1 / -1; }
 
   .field{ display:flex; flex-direction:column; gap:10px; text-align:left; }
   .field label{ font-size:.86rem; font-weight:600; color: var(--ink); }
@@ -737,10 +738,10 @@
     .form-title{ padding: 26px 22px 0; }
     form.md-form{ padding: 20px 22px 30px; }
     .form-step,
-    .form-step:has(.field:nth-child(2)){ grid-template-columns:1fr; }
+    .form-step.contact-details-step{ grid-template-columns:1fr; }
     .form-step .field,
-    .form-step .field:nth-child(3),
     .form-step .submit-row{ grid-column:1; }
+    .form-step.contact-details-step .form-foot-note{ grid-column:1; }
     .wa-card-standalone{ flex-wrap:wrap; gap:12px 14px; border-radius:22px; }
     .wa-card-standalone .btn{ flex:1 0 100%; width:100%; }
     .wa-icon-circle{ width:44px; height:44px; }
@@ -1098,7 +1099,7 @@
 
         <div class="form-shell reveal" id="formulario">
 
-        <div class="form-title"><h3>Verifique aqui:</h3></div>
+        <div class="form-title"><h3 id="formTitle">Qual o nome da sua empresa?</h3></div>
 
         <!-- Destino do envio: Google Forms -->
         <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
@@ -1132,14 +1133,18 @@
             <button type="button" class="btn btn-primary btn-block step-next">Continuar</button>
           </div>
 
-          <!-- ETAPA 3: DADOS DE CONTATO -->
+          <!-- ETAPA 3: NOME DO CONTATO -->
           <div class="form-step" id="step3" data-step="3" hidden>
             <div class="field">
               <label for="f-nome">Qual o seu nome?<span class="req">*</span></label>
               <input type="text" id="f-nome" name="entry.553468063" placeholder="Seu nome completo" required autocomplete="name">
               <small class="err">Preencha o seu nome.</small>
             </div>
+            <button type="button" class="btn btn-primary btn-block step-next">Continuar</button>
+          </div>
 
+          <!-- ETAPA 4: DADOS DE CONTATO -->
+          <div class="form-step contact-details-step" id="step4" data-step="4" hidden>
             <div class="field">
               <label for="f-whats">Qual o seu WhatsApp? (com DDD)<span class="req">*</span></label>
               <input type="tel" id="f-whats" name="entry.1394606880" placeholder="(00) 00000-0000" inputmode="numeric" autocomplete="tel" maxlength="15" pattern="\(\d{2}\) \d{5}-\d{4}" required>
@@ -1335,7 +1340,19 @@
     const mdSubmitBtn = document.getElementById('mdSubmitBtn');
     const mdIframe = document.getElementById('hidden_iframe');
     const formAnswered = document.getElementById('formAnswered');
+    const formTitle = document.getElementById('formTitle');
     let mdSubmitting = false;
+
+    const stepTitles = {
+      1: 'Qual o nome da sua empresa?',
+      2: 'Qual o seu ramo de atuação?',
+      3: 'Qual o seu nome?',
+      4: 'Vamos enviar o resultado. Qual o seu contato?'
+    };
+
+    function updateFormTitle(stepNum){
+      if(formTitle) formTitle.textContent = stepTitles[stepNum] || stepTitles[1];
+    }
 
     // Máscara do WhatsApp: aceita só números e formata como (DD) 9XXXX-XXXX
     const mdPhoneInput = document.getElementById('f-whats');
@@ -1381,6 +1398,7 @@
       mdForm.querySelectorAll('.form-step').forEach(step => {
         step.hidden = (parseInt(step.dataset.step, 10) !== n);
       });
+      updateFormTitle(n);
       const input = mdForm.querySelector('.form-step[data-step="' + n + '"] input');
       if(input) setTimeout(() => input.focus(), 60);
     }
@@ -1428,6 +1446,7 @@
         const nextStep = mdForm.querySelector('.form-step[data-step="' + (stepNum + 1) + '"]');
         if(nextStep){
           nextStep.hidden = false;
+          updateFormTitle(stepNum + 1);
           const nextInput = nextStep.querySelector('input');
           if(nextInput) setTimeout(() => nextInput.focus(), 60);
         }
@@ -1447,6 +1466,7 @@
         });
       }
     });
+    updateFormTitle(1);
 
     mdForm.addEventListener('submit', (e) => {
       if(!mdValidate()){
