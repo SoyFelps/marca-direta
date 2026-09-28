@@ -1347,7 +1347,39 @@
     const mdIframe = document.getElementById('hidden_iframe');
     const formAnswered = document.getElementById('formAnswered');
     const formTitle = document.getElementById('formTitle');
+    const SUPABASE_URL = 'https://esotiedkoeptuvkrgjcl.supabase.co';
+    const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_5y3S-opRKERnuDYkrG3oew_dWpGNwsI';
     let mdSubmitting = false;
+
+    function saveLeadBackup(){
+      const params = new URLSearchParams(window.location.search);
+      const payload = {
+        company_name: document.getElementById('f-marca').value.trim(),
+        industry: document.getElementById('f-ramo').value.trim(),
+        contact_name: document.getElementById('f-nome').value.trim(),
+        whatsapp: document.getElementById('f-whats').value.trim(),
+        email: document.getElementById('f-email').value.trim(),
+        source: document.referrer || 'direct',
+        page_url: window.location.href,
+        gclid: params.get('gclid'),
+        user_agent: navigator.userAgent
+      };
+
+      return fetch(SUPABASE_URL + '/rest/v1/leads', {
+        method: 'POST',
+        headers: {
+          'apikey': SUPABASE_PUBLISHABLE_KEY,
+          'Authorization': 'Bearer ' + SUPABASE_PUBLISHABLE_KEY,
+          'Content-Type': 'application/json',
+          'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify(payload),
+        keepalive: true
+      }).then(response => {
+        if(!response.ok) throw new Error('Supabase backup HTTP ' + response.status);
+        return response;
+      });
+    }
 
     const stepTitles = {
       1: 'Qual o nome da sua empresa?',
@@ -1482,6 +1514,10 @@
       mdSubmitting = true;
       mdSubmitBtn.disabled = true;
       mdSubmitBtn.textContent = 'Enviando...';
+
+      saveLeadBackup().catch(error => {
+        console.warn('[lead-backup] Não foi possível salvar no Supabase:', error);
+      });
     });
 
     // Como o Google Forms responde dentro do iframe (cross-origin, sem leitura possível),
