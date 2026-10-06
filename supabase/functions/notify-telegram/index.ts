@@ -56,12 +56,11 @@ Deno.serve(async (req: Request) => {
 
   const lead = payload.record;
   const text = [
-    "<b>Novo lead recebido</b>",
-    "",
-    `<b>Marca:</b> ${html(lead.company_name)}`,
-    `<b>Ramo:</b> ${html(lead.industry)}`,
-    `<b>Nome:</b> ${html(lead.contact_name)}`,
-    `<b>Telefone:</b> ${html(lead.whatsapp)}`,
+    "<b>Novo lead</b>",
+    `Marca: ${html(lead.company_name)}`,
+    `Ramo: ${html(lead.industry)}`,
+    `Nome: ${html(lead.contact_name)}`,
+    `Contato: ${html(lead.whatsapp)}`,
   ].join("\n");
 
   const response = await fetch(
