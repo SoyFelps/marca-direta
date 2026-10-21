@@ -19,7 +19,9 @@
 <link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://challenges.cloudflare.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
 <style>
   :root{
@@ -688,6 +690,7 @@
     gap:14px 16px;
   }
   .form-step.contact-details-step .submit-row{ grid-column:auto; margin-top:0; }
+  .form-step.contact-details-step .cf-turnstile{ grid-column:1 / -1; justify-self:center; width:100%; max-width:300px; }
   .form-step.contact-details-step .form-foot-note{ grid-column:1 / -1; }
 
   .field{ display:flex; flex-direction:column; gap:10px; text-align:left; }
@@ -1107,15 +1110,12 @@
 
         <div class="form-title"><h3 id="formTitle">Qual o nome da sua empresa?</h3></div>
 
-        <!-- Destino do envio: Google Forms -->
-        <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
-
         <form
           class="md-form"
           id="mdForm"
-          action="https://docs.google.com/forms/d/e/1FAIpQLSdyERrdkY4xWKUwrcwKsq9qpMzHYnTvuh_88bVoHJVtSL3lSA/formResponse"
+          action="https://xsnubphqakjyhoaeoufc.supabase.co/functions/v1/submit-lead"
           method="POST"
-          target="hidden_iframe">
+          novalidate>
 
           <div class="form-answered" id="formAnswered"></div>
 
@@ -1166,6 +1166,7 @@
             <div class="submit-row">
               <button type="submit" class="btn btn-primary btn-block" id="mdSubmitBtn">Verificar disponibilidade</button>
             </div>
+            <div class="cf-turnstile" data-sitekey="0x4AAAAAAFfK0rxj5C3G66S4" data-theme="light" data-size="flexible" data-appearance="interaction-only"></div>
             <p class="form-foot-note">Ao enviar, você concorda em ser contatado pela nossa equipe pelo WhatsApp ou e-mail.</p>
           </div>
 
@@ -1330,30 +1331,26 @@
   document.getElementById('year').textContent = new Date().getFullYear();
 
   // ---- Conversão do Google Ads ----
-  // Disparada apenas quando o envio do formulário é de fato confirmado
-  // (veja o listener "load" do iframe mais abaixo), e não no simples clique
-  // do botão, para não contar tentativas com campo inválido como conversão.
+  // Disparada apenas quando o endpoint protegido confirma os dois envios.
   function gtag_report_conversion() {
     gtag('event', 'conversion', {
         'send_to': 'AW-18394751590/Ti4lCK7jr4IdEObEpsNE'
     });
   }
 
-  // ---- Formulário de contato (envia para o Google Forms via iframe oculto) ----
+  // ---- Formulário de contato (Turnstile + Edge Function) ----
   const mdForm = document.getElementById('mdForm');
   if(mdForm){
     const mdSuccess = document.getElementById('mdSuccess');
     const mdSubmitBtn = document.getElementById('mdSubmitBtn');
-    const mdIframe = document.getElementById('hidden_iframe');
     const formAnswered = document.getElementById('formAnswered');
     const formTitle = document.getElementById('formTitle');
-    const SUPABASE_URL = 'https://xsnubphqakjyhoaeoufc.supabase.co';
-    const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_6W6oq5ofebgxgZ0YAIawXQ_qPy4GuFP';
+    const LEAD_SUBMIT_URL = 'https://xsnubphqakjyhoaeoufc.supabase.co/functions/v1/submit-lead';
     let mdSubmitting = false;
 
-    function saveLeadBackup(){
+    function collectLead(){
       const params = new URLSearchParams(window.location.search);
-      const payload = {
+      return {
         company_name: document.getElementById('f-marca').value.trim(),
         industry: document.getElementById('f-ramo').value.trim(),
         contact_name: document.getElementById('f-nome').value.trim(),
@@ -1364,21 +1361,6 @@
         gclid: params.get('gclid'),
         user_agent: navigator.userAgent
       };
-
-      return fetch(SUPABASE_URL + '/rest/v1/leads', {
-        method: 'POST',
-        headers: {
-          'apikey': SUPABASE_PUBLISHABLE_KEY,
-          'Authorization': 'Bearer ' + SUPABASE_PUBLISHABLE_KEY,
-          'Content-Type': 'application/json',
-          'Prefer': 'return=minimal'
-        },
-        body: JSON.stringify(payload),
-        keepalive: true
-      }).then(response => {
-        if(!response.ok) throw new Error('Supabase backup HTTP ' + response.status);
-        return response;
-      });
     }
 
     const stepTitles = {
@@ -1507,29 +1489,46 @@
     updateFormTitle(1);
 
     mdForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if(mdSubmitting) return;
       if(!mdValidate()){
-        e.preventDefault();
         return;
       }
+
+      const turnstileInput = mdForm.querySelector('input[name="cf-turnstile-response"]');
+      const turnstileToken = turnstileInput ? turnstileInput.value : '';
+      if(!turnstileToken){
+        alert('Conclua a verificação de segurança para continuar.');
+        return;
+      }
+
       mdSubmitting = true;
       mdSubmitBtn.disabled = true;
       mdSubmitBtn.textContent = 'Enviando...';
 
-      saveLeadBackup().catch(error => {
-        console.warn('[lead-backup] Não foi possível salvar no Supabase:', error);
+      fetch(LEAD_SUBMIT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...collectLead(), turnstile_token: turnstileToken })
+      }).then(response => {
+        if(!response.ok) throw new Error('Lead submit HTTP ' + response.status);
+        return response.json();
+      }).then(result => {
+        if(!result.ok) throw new Error('Lead submit rejected');
+        mdSubmitting = false;
+        gtag_report_conversion();
+        if(formTitle) formTitle.textContent = 'Verificação em Andamento';
+        mdForm.classList.add('hide');
+        mdSuccess.classList.add('show');
+        mdSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }).catch(error => {
+        console.warn('[lead-submit] Não foi possível enviar o formulário:', error);
+        mdSubmitting = false;
+        mdSubmitBtn.disabled = false;
+        mdSubmitBtn.textContent = 'Verificar disponibilidade';
+        if(window.turnstile) window.turnstile.reset();
+        alert('Não foi possível enviar agora. Atualize a verificação de segurança e tente novamente.');
       });
-    });
-
-    // Como o Google Forms responde dentro do iframe (cross-origin, sem leitura possível),
-    // usamos o evento "load" do iframe após o envio como sinal de sucesso.
-    mdIframe.addEventListener('load', () => {
-      if(!mdSubmitting) return;
-      mdSubmitting = false;
-      gtag_report_conversion();
-      if(formTitle) formTitle.textContent = 'Verificação em Andamento';
-      mdForm.classList.add('hide');
-      mdSuccess.classList.add('show');
-      mdSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
     });
   }
 </script>
