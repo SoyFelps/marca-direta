@@ -154,14 +154,33 @@ Deno.serve(async (req: Request) => {
     "entry.1646529745": lead.email,
   });
 
-  const googleResponse = await fetch(GOOGLE_FORM_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: googleFormBody,
-  });
+  let googleResponse: Response | null = null;
+  for (let attempt = 0; attempt < 3; attempt += 1) {
+    try {
+      googleResponse = await fetch(GOOGLE_FORM_URL, {
+        method: "POST",
+        redirect: "follow",
+        headers: {
+          Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+          "Content-Type": "application/x-www-form-urlencoded",
+          Origin: "https://marcadireta.com.br",
+          Referer:
+            "https://docs.google.com/forms/d/e/1FAIpQLSdyERrdkY4xWKUwrcwKsq9qpMzHYnTvuh_88bVoHJVtSL3lSA/viewform?usp=dialog",
+          "User-Agent":
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/155.0.0.0 Safari/537.36",
+        },
+        body: googleFormBody,
+      });
+    } catch (error) {
+      console.error("Google Forms request error", error instanceof Error ? error.message : "unknown");
+    }
 
-  if (!googleResponse.ok) {
-    console.error("Google Forms submission failed", googleResponse.status);
+    if (googleResponse?.ok) break;
+    if (attempt < 2) await new Promise((resolve) => setTimeout(resolve, 400 * (attempt + 1)));
+  }
+
+  if (!googleResponse?.ok) {
+    console.error("Google Forms submission failed", googleResponse?.status ?? "no response");
     return json({ error: "Could not forward submission" }, 502, responseOrigin);
   }
 
