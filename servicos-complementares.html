@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18394751590"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-18394751590');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Serviços complementares — Marca Direta</title>
+<meta name="description" content="Google Meu Negócio, criação de sites, proteção de domínios e registro de CNPJ: tudo o que sua empresa precisa para ter uma presença digital completa, com valores sob medida.">
+
+<link rel="icon" type="image/svg+xml" href="assets/mark.svg">
+<link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --green: #3ECF4A;
+    --teal: #1B7A7A;
+    --ink: #0E2B28;
+    --ink-soft: #3E5E5A;
+    --bg: #FAFAF8;
+    --bg-soft: #EFF6F1;
+    --white: #FFFFFF;
+    --line: rgba(14,43,40,.12);
+    --gradient: linear-gradient(135deg, var(--green), var(--teal));
+    --shadow: 0 20px 50px -20px rgba(14,43,40,.25);
+    --radius: 18px;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{
+    margin:0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  h1,h2,h3,.display{
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+  p{ margin:0; line-height: 1.6; color: var(--ink-soft); }
+  a{ color: inherit; text-decoration: none; }
+  img{ max-width: 100%; display:block; }
+  .mono{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .72rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .wrap{ max-width: 1160px; margin: 0 auto; padding: 0 28px; }
+  section{ position: relative; }
+
+  ::selection{ background: var(--green); color: var(--white); }
+
+  /* ---------- Buttons ---------- */
+  .btn{
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 26px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: .95rem;
+    border: none;
+    cursor: pointer;
+    transition: transform .25s ease, box-shadow .25s ease;
+    white-space: nowrap;
+  }
+  .btn:focus-visible{ outline: 3px solid var(--green); outline-offset: 3px; }
+  .btn-primary{
+    background: var(--gradient);
+    color: var(--white);
+    box-shadow: 0 12px 30px -10px rgba(27,122,122,.55);
+  }
+  .btn-primary:hover{ transform: translateY(-2px); box-shadow: 0 16px 36px -10px rgba(27,122,122,.65); }
+  .btn-ghost{
+    background: transparent;
+    color: var(--ink);
+    border: 1.5px solid var(--line);
+  }
+  .btn-ghost:hover{ border-color: var(--teal); color: var(--teal); }
+  .btn-light{
+    background: var(--white);
+    color: var(--ink);
+  }
+  .btn-light:hover{ transform: translateY(-2px); }
+
+  /* ---------- Header ---------- */
+  header{
+    position: sticky; top:0; z-index: 100;
+    background: rgba(250,250,248,.82);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid transparent;
+    transition: border-color .3s ease;
+  }
+  header.scrolled{ border-color: var(--line); }
+  .header-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 16px 0;
+  }
+  .logo{ display:flex; align-items:center; }
+  .logo img{ height: 34px; width:auto; }
+  nav{ display:flex; align-items:center; gap: 36px; }
+  nav a:not(.btn){
+    font-size: .92rem; font-weight: 500; color: var(--ink-soft);
+    position: relative;
+    padding: 4px 0;
+  }
+  nav a:not(.btn)::after{
+    content:''; position:absolute; left:0; bottom:-2px; height:2px; width:0;
+    background: var(--gradient); transition: width .25s ease;
+  }
+  nav a:not(.btn):hover{ color: var(--ink); }
+  nav a:not(.btn):hover::after{ width: 100%; }
+  .nav-links{ display:flex; align-items:center; gap:32px; }
+  .menu-toggle{ display:none; background:none; border:none; cursor:pointer; padding: 6px; }
+  .menu-toggle span{ display:block; width:24px; height:2px; background:var(--ink); margin:5px 0; transition: all .3s ease; }
+
+
+  /* ---------- CTA / footer ---------- */
+  .cta-band{
+    margin: 40px 20px 0;
+    border-radius: 32px;
+    padding: 90px 40px;
+    background: var(--gradient);
+    text-align:center;
+    color: var(--white);
+    position: relative;
+    overflow:hidden;
+  }
+  .cta-band h2{ color:var(--white); font-size: clamp(1.9rem,4vw,2.7rem); max-width:680px; margin:0 auto; }
+  .cta-band p{ color: rgba(255,255,255,.85); margin-top:16px; max-width:480px; margin-left:auto; margin-right:auto; }
+  .cta-band .hero-cta{ justify-content:center; margin-top:34px; }
+
+  footer{ padding: 60px 0 40px; }
+  .footer-inner{
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px;
+    padding-top: 32px;
+    border-top: 1px solid var(--line);
+  }
+  .footer-top{ display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap: 30px; margin-bottom:20px;}
+  .footer-brand img{ height:28px; margin-bottom:14px; }
+  .footer-brand p{ font-size:.88rem; max-width:280px; }
+  .social{ display:flex; gap:12px; }
+  .social a{
+    width:40px; height:40px; border-radius:50%;
+    border: 1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+    transition: background .25s ease, border-color .25s ease, transform .25s ease;
+  }
+  .social a:hover{ background: var(--gradient); border-color:transparent; transform: translateY(-3px); }
+  .social a:hover svg path{ fill: white; }
+  .foot-links{ display:flex; gap:28px; font-size:.88rem; color:var(--ink-soft); }
+  .foot-copy{ font-size:.82rem; color: var(--ink-soft); }
+
+  /* ---------- Reveal on scroll ---------- */
+  .reveal{ opacity:0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.in-view{ opacity:1; transform: translateY(0); }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .reveal, .p-node{ transition:none; opacity:1; transform:none; }
+  }
+
+  /* ---------- Botão WhatsApp e flutuante ---------- */
+  .btn-whatsapp{ background:#25D366; color: var(--white); box-shadow: 0 12px 30px -10px rgba(37,211,102,.55); }
+  .btn-whatsapp:hover{ transform: translateY(-2px); box-shadow: 0 16px 36px -10px rgba(37,211,102,.65); }
+  .wa-float{
+    position: fixed; right: 22px; bottom: 22px; z-index: 200;
+    width: 60px; height:60px; border-radius: 50%;
+    background: #25D366;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow: 0 14px 30px -8px rgba(37,211,102,.6);
+    transition: transform .25s ease;
+  }
+  .wa-float:hover{ transform: scale(1.08); }
+
+  /* ---------- Menu com submenu ---------- */
+  .nav-item{ position:relative; display:flex; align-items:center; gap:2px; }
+  .sub-toggle{
+    background:none; border:0; padding:6px; cursor:pointer; display:inline-flex; color: var(--ink-soft);
+    border-radius:8px;
+  }
+  .sub-toggle svg{ transition: transform .2s ease; }
+  .nav-item.open .sub-toggle svg,
+  .nav-item:hover .sub-toggle svg{ transform: rotate(180deg); }
+  .submenu{
+    position:absolute; top:100%; left:-14px; min-width:250px; margin-top:8px; padding:8px;
+    background: var(--white); border:1px solid var(--line); border-radius:16px; box-shadow: var(--shadow);
+    opacity:0; visibility:hidden; transform: translateY(6px);
+    transition: opacity .2s ease, transform .2s ease, visibility .2s ease; z-index:120;
+  }
+  .submenu::before{ content:""; position:absolute; left:0; right:0; top:-12px; height:12px; }
+  .nav-item:hover .submenu,
+  .nav-item:focus-within .submenu,
+  .nav-item.open .submenu{ opacity:1; visibility:visible; transform:none; }
+  .submenu a{ display:block; padding:10px 14px; border-radius:10px; font-size:.9rem; color: var(--ink-soft); }
+  .submenu a:hover{ background: var(--bg-soft); color: var(--ink); }
+  .submenu a.current{ color: var(--teal); font-weight:600; }
+
+  /* ---------- Página de serviços ---------- */
+  .page-hero{ padding: 90px 0 30px; text-align:center; }
+  .page-hero .mono{ color: var(--teal); display:block; margin-bottom:16px; }
+  .page-hero h1{ font-size: clamp(2.1rem, 4.6vw, 3.3rem); line-height:1.1; max-width:780px; margin:0 auto; }
+  .page-hero .lead{ max-width:620px; margin:20px auto 0; font-size:1.08rem; }
+  .svc-chips{ display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-top:32px; }
+  .svc-chip{
+    padding:10px 18px; border-radius:999px; background: var(--white); border:1px solid var(--line);
+    font-weight:600; font-size:.9rem; color: var(--ink); transition: border-color .2s ease, color .2s ease, transform .2s ease;
+  }
+  .svc-chip:hover{ border-color: var(--teal); color: var(--teal); transform: translateY(-2px); }
+  .price-note-pill{
+    display:inline-flex; align-items:center; gap:10px; margin-top:26px; padding:10px 18px; border-radius:999px;
+    background: var(--bg-soft); color: var(--ink-soft); font-size:.88rem;
+  }
+  .price-note-pill b{ color: var(--ink); }
+
+  .svc-list{ padding: 20px 0 30px; }
+  .svc-row{
+    display:grid; grid-template-columns: 1fr 1fr; gap:72px; align-items:center;
+    max-width:1040px; margin:0 auto; padding:64px 0; scroll-margin-top:90px;
+  }
+  .svc-row.flip .svc-art{ order:2; }
+  .svc-copy .mono{ color: var(--teal); display:block; margin-bottom:14px; }
+  .svc-copy h2{ font-size: clamp(1.8rem, 3.4vw, 2.5rem); line-height:1.1; }
+  .svc-copy h2 em{ font-style:normal; color: var(--teal); }
+  .svc-copy .keep{ margin-top:18px; font-size:1.08rem; color: var(--ink); line-height:1.6; }
+  .svc-copy h3{ font-size:1.02rem; margin-top:28px; color: var(--ink); }
+  .svc-copy p.why{ margin-top:10px; font-size:.98rem; line-height:1.7; }
+  .svc-copy p.why strong{ color: var(--ink); }
+  .svc-points{ list-style:none; margin:18px 0 0; padding:0; display:flex; flex-direction:column; gap:12px; }
+  .svc-points li{ display:flex; gap:12px; align-items:flex-start; color: var(--ink); font-weight:500; font-size:.95rem; line-height:1.5; }
+  .svc-points svg{ flex:none; margin-top:1px; }
+
+  /* Ilustrações */
+  .svc-art{
+    position:relative; border-radius:30px; min-height:360px; overflow:hidden;
+    padding:44px 0 44px 44px; background: linear-gradient(135deg, #D9F2DE, #CFE7E4);
+  }
+  .svc-art.a2{ background: linear-gradient(135deg, #E2ECFB, #D6E1F7); }
+  .svc-art.a3{ background: linear-gradient(135deg, #EAE3FA, #DDD3F5); }
+  .svc-art.a4{ background: linear-gradient(135deg, #FBF0D8, #F6E3BC); }
+  .svc-row.flip .svc-art{ padding:44px 44px 44px 0; }
+  .mock{
+    background: var(--white); border-radius:22px 0 0 22px; padding:24px 24px 90px;
+    box-shadow: var(--shadow); min-height:270px;
+  }
+  .svc-row.flip .mock{ border-radius:0 22px 22px 0; }
+  .svc-badge{
+    position:absolute; left:30px; bottom:34px; display:flex; align-items:center; gap:10px;
+    background: var(--gradient); color: var(--white); padding:13px 18px; border-radius:16px;
+    font-size:.88rem; font-weight:600; box-shadow: 0 16px 32px -12px rgba(14,43,40,.45);
+  }
+  .svc-row.flip .svc-badge{ left:auto; right:30px; }
+  .svc-badge.blue{ background: linear-gradient(135deg,#4F86E8,#3566CC); }
+  .svc-badge.purple{ background: linear-gradient(135deg,#8B6FD6,#6A4FC0); }
+  .svc-badge.amber{ background: linear-gradient(135deg,#F2A93B,#D98A1B); }
+  .svc-badge svg{ flex:none; }
+
+  .pill{ display:block; height:14px; border-radius:999px; background:#EDF3EF; }
+  .pill.w60{ width:60%; } .pill.w40{ width:40%; } .pill.w80{ width:80%; }
+  .pill.g{ background:#D7F0DC; }
+  .m-head{ display:flex; align-items:center; gap:12px; margin-bottom:16px; }
+  .m-dot{ width:34px; height:34px; border-radius:50%; background:#E4F5E7; flex:none; display:flex; align-items:center; justify-content:center; }
+  .m-stars{ color:#F2A93B; letter-spacing:2px; font-size:.95rem; margin:4px 0 14px; }
+  .m-stars small{ color: var(--ink-soft); letter-spacing:0; font-size:.78rem; margin-left:6px; }
+  .m-actions{ display:flex; gap:8px; margin-top:16px; }
+  .m-btn{ padding:8px 14px; border-radius:999px; background:#E4F5E7; color: var(--teal); font-weight:600; font-size:.78rem; }
+  .m-stack{ display:flex; flex-direction:column; gap:10px; }
+
+  /* Mock do site */
+  .m-browser{ display:flex; gap:6px; margin-bottom:14px; align-items:center; }
+  .m-browser i{ width:10px; height:10px; border-radius:50%; background:#E3E8E5; display:block; }
+  .m-url{ flex:1; height:22px; border-radius:999px; background:#EDF3EF; margin-left:8px; display:flex; align-items:center; padding:0 12px; font-size:.7rem; color: var(--ink-soft); }
+  .m-hero{ height:74px; border-radius:12px; background: linear-gradient(120deg,#CFE0FA,#9DBDF2); margin-bottom:12px; }
+  .m-cols{ display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+  .m-cols span{ height:46px; border-radius:10px; background:#EEF2FA; display:block; }
+  .m-phone{
+    position:absolute; right:34px; bottom:34px; width:92px; height:150px; border-radius:18px;
+    background: var(--white); border:3px solid #1F3A66; box-shadow: var(--shadow); padding:10px 8px;
+    display:flex; flex-direction:column; gap:7px;
+  }
+  .m-phone b{ display:block; height:34px; border-radius:8px; background: linear-gradient(120deg,#CFE0FA,#9DBDF2); }
+  .m-phone span{ display:block; height:8px; border-radius:999px; background:#E7ECF7; }
+  .svc-row.flip .m-phone{ right:auto; left:34px; }
+
+  /* Mock dos domínios */
+  .m-domain{
+    display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 14px; border-radius:12px;
+    background:#F6F3FD; font-weight:600; font-size:.88rem; color: var(--ink);
+  }
+  .m-d{ font-weight:600; }
+  .m-d span{ color:#6A4FC0; }
+  .m-ok{ display:inline-flex; align-items:center; gap:6px; font-size:.72rem; font-weight:700; color:#2B8A4B; background:#DDF3E3; padding:4px 10px; border-radius:999px; }
+
+  /* Mock do CNPJ */
+  .m-doc-title{ font-size:.72rem; letter-spacing:.06em; text-transform:uppercase; color: var(--ink-soft); font-weight:600; }
+  .m-cnpj{ font-family:'JetBrains Mono', monospace; font-size:1.15rem; color: var(--ink); margin:6px 0 12px; font-weight:500; }
+  .m-status{ display:inline-flex; align-items:center; gap:8px; font-size:.75rem; font-weight:700; color:#2B8A4B; background:#DDF3E3; padding:5px 12px; border-radius:999px; margin-bottom:14px; }
+  .m-steps{ display:flex; gap:6px; margin-top:16px; }
+  .m-steps span{ flex:1; height:8px; border-radius:999px; background:#F1E2BF; }
+  .m-steps span.on{ background:#E8A838; }
+
+  /* Valores a combinar */
+  .svc-cta{
+    margin:60px 20px 0; border-radius:32px; padding:84px 40px; background: var(--ink); text-align:center; position:relative; overflow:hidden;
+  }
+  .svc-cta::after{
+    content:""; position:absolute; right:-80px; top:-80px; width:300px; height:300px; border-radius:50%;
+    background: radial-gradient(circle, rgba(62,207,74,.3), transparent 70%); pointer-events:none;
+  }
+  .svc-cta .mono{ color: var(--green); display:block; margin-bottom:16px; position:relative; z-index:1; }
+  .svc-cta h2{ color: var(--white); font-size: clamp(1.8rem, 3.6vw, 2.6rem); max-width:640px; margin:0 auto; position:relative; z-index:1; }
+  .svc-cta p{ color: rgba(255,255,255,.75); max-width:560px; margin:18px auto 0; position:relative; z-index:1; }
+  .svc-cta .btn{ margin-top:32px; position:relative; z-index:1; }
+
+  @media (max-width: 900px){
+    .svc-row{ gap:40px; }
+  }
+  @media (max-width: 760px){
+    .nav-links{
+      position: fixed; top:66px; left:0; right:0; height: calc(100vh - 66px); background: var(--bg);
+      flex-direction:column; align-items:flex-start; gap:0; padding: 10px 28px 40px;
+      transform: translateX(100%); transition: transform .35s ease; overflow-y: auto;
+    }
+    .nav-links.open{ transform: translateX(0); }
+    .nav-links a:not(.btn){ width:100%; padding: 16px 0; border-bottom:1px solid var(--line); display:block; }
+    .nav-links .btn{ margin-top: 20px; }
+    .menu-toggle{ display:block; }
+    .nav-item{ width:100%; flex-direction:column; align-items:stretch; }
+    .sub-toggle{ display:none; }
+    .submenu{
+      position:static; opacity:1; visibility:visible; transform:none; box-shadow:none; border:0;
+      padding:0 0 0 16px; margin:0; min-width:0; background:transparent;
+    }
+    .submenu::before{ display:none; }
+    .submenu a{ padding:12px 0; border-bottom:1px solid var(--line); border-radius:0; }
+    .footer-top{ flex-direction:column; }
+    .page-hero{ padding:60px 0 20px; }
+    .svc-row{ grid-template-columns:1fr; padding:44px 0; gap:28px; }
+    .svc-row.flip .svc-art{ order:0; }
+    .svc-art, .svc-row.flip .svc-art{ padding:30px 0 30px 30px; min-height:0; }
+    .svc-row.flip .svc-art{ padding:30px 30px 30px 0; }
+    .svc-cta{ padding:60px 24px; border-radius:26px; }
+  }
+</style>
+</head>
+<body>
+
+<header id="site-header">
+  <div class="wrap header-inner">
+    <a href="index.html" class="logo"><img src="assets/logo_dark.png" alt="Marca Direta"></a>
+    <div class="nav-links" id="navLinks">
+      <div class="nav-inner-links" style="display:contents;">
+        <div class="nav-item" id="navItem">
+          <a href="index.html#oferecemos">O que oferecemos</a>
+          <button type="button" class="sub-toggle" id="subToggle" aria-label="Mostrar opções de serviços" aria-expanded="false" aria-controls="submenu">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="submenu" id="submenu">
+            <a href="index.html#oferecemos">Registro de marca</a>
+            <a href="servicos-complementares.html#google-meu-negocio">Google Meu Negócio</a>
+            <a href="servicos-complementares.html#criacao-de-sites">Criação de sites</a>
+            <a href="servicos-complementares.html#protecao-de-dominios">Proteção de domínios</a>
+            <a href="servicos-complementares.html#registro-de-cnpj">Registro de CNPJ</a>
+          </div>
+        </div>
+        <a href="index.html#como-funciona">Como funciona</a>
+        <a href="index.html#quem-somos">Quem somos</a>
+        <a href="index.html#faq">Perguntas frequentes</a>
+      </div>
+      <a href="index.html#contato" class="btn btn-primary">Registrar minha marca</a>
+    </div>
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+  <section class="page-hero">
+    <div class="wrap">
+      <span class="mono">Serviços complementares</span>
+      <h1>Uma presença digital completa para o seu negócio</h1>
+      <p class="lead">Além da proteção da sua marca, cuidamos de pontos essenciais para colocar sua empresa no lugar certo e fortalecer sua presença online.</p>
+      <div class="svc-chips">
+        <a class="svc-chip" href="#google-meu-negocio">Google Meu Negócio</a>
+        <a class="svc-chip" href="#criacao-de-sites">Criação de sites</a>
+        <a class="svc-chip" href="#protecao-de-dominios">Proteção de domínios</a>
+        <a class="svc-chip" href="#registro-de-cnpj">Registro de CNPJ</a>
+      </div>
+      <div class="price-note-pill"><b>Valores a combinar</b> · conforme o projeto e o seu tamanho</div>
+    </div>
+  </section>
+
+  <section class="svc-list">
+    <div class="wrap">
+
+      <!-- GOOGLE MEU NEGÓCIO -->
+      <article class="svc-row reveal" id="google-meu-negocio">
+        <div class="svc-art">
+          <div class="mock">
+            <div class="m-head">
+              <div class="m-dot"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 10.5C20 15.5 12 21 12 21S4 15.5 4 10.5C4 6.91 7.13 4 12 4S20 6.91 20 10.5Z" stroke="#1B7A7A" stroke-width="1.8"/><circle cx="12" cy="10" r="2.5" stroke="#3ECF4A" stroke-width="1.8"/></svg></div>
+              <div class="m-stack" style="flex:1"><span class="pill w60"></span><span class="pill w40 g"></span></div>
+            </div>
+            <div class="m-stars">★★★★★<small>4,9 · avaliações de clientes</small></div>
+            <div class="m-stack"><span class="pill w80"></span><span class="pill w60"></span></div>
+            <div class="m-actions"><span class="m-btn">Ligar</span><span class="m-btn">Como chegar</span><span class="m-btn">Site</span></div>
+          </div>
+          <div class="svc-badge"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M20 10.5C20 15.5 12 21 12 21S4 15.5 4 10.5C4 6.91 7.13 4 12 4S20 6.91 20 10.5Z" stroke="white" stroke-width="1.8"/><circle cx="12" cy="10" r="2.5" stroke="white" stroke-width="1.8"/></svg>Aparece no Maps e na Pesquisa</div>
+        </div>
+        <div class="svc-copy">
+          <span class="mono">Serviço 01</span>
+          <h2>Google <em>Meu Negócio</em></h2>
+          <p class="keep">Criação e configuração do perfil da empresa no Google para facilitar que clientes encontrem o seu negócio.</p>
+          <h3>Por que fazer isso?</h3>
+          <p class="why">Quando alguém procura um serviço por perto, o Google mostra no Maps e na Pesquisa as empresas que têm perfil, com endereço, horário, telefone, fotos e avaliações num só lugar. <strong>Quem não tem perfil, ou tem um incompleto, fica de fora justamente na hora em que o cliente está decidindo.</strong> Hoje o Google chama o serviço de Perfil da Empresa, e o próprio Sebrae, em parceria com o Google, ajuda pequenos negócios a criá-lo por considerá-lo essencial para ganhar visibilidade.</p>
+          <ul class="svc-points">
+            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#E4F5E7"/><path d="m7 12.5 3.5 3.5L17 9" stroke="#1B7A7A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Sua empresa aparece no Google Maps e na Pesquisa</span></li>
+            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#E4F5E7"/><path d="m7 12.5 3.5 3.5L17 9" stroke="#1B7A7A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Avaliações e fotos que geram confiança antes do primeiro contato</span></li>
+            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#E4F5E7"/><path d="m7 12.5 3.5 3.5L17 9" stroke="#1B7A7A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>O cliente liga, pede a rota ou abre o seu site com um toque</span></li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- CRIAÇÃO DE SITES -->
+      <article class="svc-row flip reveal" id="criacao-de-sites">
+        <div class="svc-art a2">
+          <div class="mock">
+            <div class="m-browser"><i></i><i></i><i></i><div class="m-url">suaempresa.com.br</div></div>
+            <div class="m-hero"></div>
+            <div class="m-cols"><span></span><span></span><span></span></div>
+          </div>
+          <div class="m-phone"><b></b><span></span><span></span><span></span></div>
+          <div class="svc-badge blue"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="12" rx="2" stroke="white" stroke-width="1.8"/><path d="M8 21h8M12 17v4" stroke="white" stroke-width="1.8" stroke-linecap="round"/></svg>Celular e computador</div>
+        </div>
+        <div class="svc-copy">
+          <span class="mono">Serviço 02</span>
+          <h2>Criação <em>de sites</em></h2>
+          <p class="keep">Sites profissionais, responsivos e pensados para apresentar sua empresa com clareza e credibilidade.</p>
+          <h3>Por que ter um site profissional?</h3>
+          <p class="why">O site é a vitrine da sua empresa na internet, um cartão de visitas aberto 24 horas por dia, como o Sebrae costuma descrever. Antes de comprar ou contratar, muita gente pesquisa a empresa online para saber se ela é confiável. <strong>Um site próprio responde a isso: mostra o que você faz, como falar com você e passa credibilidade</strong>, algo que perfis em redes sociais, sobre os quais você não tem controle, não entregam sozinhos. Com domínio próprio, você ainda ganha e-mail profissional e um endereço que o Google pode encontrar.</p>
+          <ul class="svc-points">
+            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#E4F5E7"/><path d="m7 12.5 3.5 3.5L17 9" stroke="#1B7A7A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Presença 24 horas por dia, recebendo contatos e pedidos de orçamento</span></li>
+            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#E4F5E7"/><path d="m7 12.5 3.5 3.5L17 9" stroke="#1B7A7A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Mais credibilidade, com endereço e e-mail profissionais</span></li>
+            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#E4F5E7"/><path d="m7 12.5 3.5 3.5L17 9" stroke="#1B7A7A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Um espaço seu, para apresentar a empresa do jeito que você quer</span></li>
+            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#E4F5E7"/><path d="m7 12.5 3.5 3.5L17 9" stroke="#1B7A7A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Funciona bem no celular, que muita gente usa para pesquisar</span></li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- PROTEÇÃO DE DOMÍNIOS -->
+      <article class="svc-row reveal" id="protecao-de-dominios">
+        <div class="svc-art a3">
+          <div class="mock">
+            <div class="m-stack">
+              <div class="m-domain"><strong class="m-d"><span>suamarca</span>.com.br</strong><em class="m-ok" style="font-style:normal">✓ protegido</em></div>
+              <div class="m-domain"><strong class="m-d"><span>suamarca</span>.com</strong><em class="m-ok" style="font-style:normal">✓ protegido</em></div>
+              <div class="m-domain"><strong class="m-d"><span>suamarca</span>.net</strong><em class="m-ok" style="font-style:normal">✓ protegido</em></div>
+              <div class="m-domain"><strong class="m-d"><span>suamarca</span>.ai</strong><em class="m-ok" style="font-style:normal">✓ protegido</em></div>
+            </div>
+          </div>
+          <div class="svc-badge purple"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2.5 4 5.5v6c0 5 3.4 8.6 8 10 4.6-1.4 8-5 8-10v-6l-8-3Z" stroke="white" stroke-width="1.8" stroke-linejoin="round"/><path d="m8.5 12 2.5 2.5 4.5-5" stroke="white" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>Seu nome em todas as extensões</div>
+        </div>
+        <div class="svc-copy">
+          <span class="mono">Serviço 03</span>
+          <h2>Proteção <em>de domínios</em></h2>
+          <p class="keep">Orientação e registro de domínios para proteger o endereço digital da sua empresa e evitar conflitos.</p>
+          <h3>O que é a proteção de domínios?</h3>
+          <p class="why">É reunir, num pacote, o seu nome nas extensões que mais importam, como <strong>.com.br, .com, .net, .ai</strong> e outras que façam sentido para o seu negócio. Assim, se o seu site é suamarca.com.br, ninguém consegue registrar suamarca.com ou suamarca.net para se passar por você, desviar seus clientes ou criar confusão com um endereço quase idêntico. Em 2023, donos de marcas apresentaram um número recorde de 6.192 casos de disputa de domínios à OMPI (Organização Mundial da Propriedade Intelectual). E ter a marca registrada no INPI tende a facilitar a sua posição quando é preciso contestar quem usa o seu nome de má-fé.</p>
+          <ul class="svc-points">
+            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#E4F5E7"/><path d="m7 12.5 3.5 3.5L17 9" stroke="#1B7A7A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Concorrentes não registram o mesmo nome só trocando a extensão</span></li>
+            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#E4F5E7"/><path d="m7 12.5 3.5 3.5L17 9" stroke="#1B7A7A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Menos risco de golpes e sites falsos usando o nome da sua empresa</span></li>
+            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#E4F5E7"/><path d="m7 12.5 3.5 3.5L17 9" stroke="#1B7A7A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Os endereços certos já são seus quando o negócio crescer</span></li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- REGISTRO DE CNPJ -->
+      <article class="svc-row flip reveal" id="registro-de-cnpj">
+        <div class="svc-art a4">
+          <div class="mock">
+            <div class="m-doc-title">Comprovante de inscrição</div>
+            <div class="m-cnpj">00.000.000/0001-00</div>
+            <div class="m-status">● Situação cadastral: ATIVA</div>
+            <div class="m-stack"><span class="pill w80"></span><span class="pill w60"></span></div>
+            <div class="m-steps"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></div>
+          </div>
+          <div class="svc-badge amber"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 12.5 9.2 17.5 20 5.5" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Empresa aberta e formalizada</div>
+        </div>
+        <div class="svc-copy">
+          <span class="mono">Serviço 04</span>
+          <h2>Registro <em>de CNPJ</em></h2>
+          <p class="keep">Auxílio no processo de abertura e formalização da empresa para você começar seu negócio de forma organizada.</p>
+          <h3>Como é abrir um CNPJ?</h3>
+          <p class="why">O caminho depende do tipo de empresa. <strong>Primeiro se escolhe o formato</strong> (MEI, ME, sociedade limitada…), de acordo com a atividade e o faturamento previsto. Depois definem-se as atividades da empresa (os códigos CNAE, um erro comum que causa atrasos) e faz-se o cadastro pelo portal do governo. Para o MEI, a inscrição é gratuita e feita no Portal do Empreendedor; para os demais tipos, o registro passa pela Junta Comercial e a Receita Federal gera o CNPJ, num processo integrado pela Redesim. Na prática, cada caso tem suas particularidades, e é aí que o auxílio evita erros e retrabalho.</p>
+          <ul class="svc-points">
+            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#E4F5E7"/><path d="m7 12.5 3.5 3.5L17 9" stroke="#1B7A7A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Emissão de nota fiscal e venda para outras empresas</span></li>
+            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#E4F5E7"/><path d="m7 12.5 3.5 3.5L17 9" stroke="#1B7A7A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Conta bancária empresarial, maquininha de cartão e crédito para o negócio</span></li>
+            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#E4F5E7"/><path d="m7 12.5 3.5 3.5L17 9" stroke="#1B7A7A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Mais organização e credibilidade com clientes e fornecedores</span></li>
+            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#E4F5E7"/><path d="m7 12.5 3.5 3.5L17 9" stroke="#1B7A7A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>No MEI, benefícios do INSS (como aposentadoria e auxílio-doença) com o pagamento mensal em dia</span></li>
+          </ul>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="svc-cta reveal" id="valores">
+    <span class="mono">Valores a combinar</span>
+    <h2>Cada projeto é único, e o valor também</h2>
+    <p>Os valores dependem do projeto e do tamanho do que a sua empresa precisa. Conte o que você busca e a gente monta uma proposta sob medida.</p>
+    <a href="https://wa.me/5531998984257?text=Ol%C3%A1!%20Quero%20falar%20sobre%20servi%C3%A7os%20complementares." target="_blank" rel="noopener" class="btn btn-whatsapp">Chamar no WhatsApp</a>
+  </section>
+
+</main>
+
+<a href="https://wa.me/5531998984257?text=Ol%C3%A1!%20Quero%20falar%20sobre%20servi%C3%A7os%20complementares." target="_blank" rel="noopener" class="wa-float" aria-label="Falar no WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.5 2 2 6.5 2 12C2 13.9 2.5 15.6 3.4 17.1L2 22L7.1 20.7C8.5 21.5 10.2 22 12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2Z" stroke="white" stroke-width="1.6" stroke-linejoin="round"/><g transform="translate(-1.15,-1.8)"><path d="M8.5 8.7C8.7 8.2 9 8.2 9.3 8.2C9.5 8.2 9.7 8.2 9.9 8.7C10.1 9.2 10.6 10.4 10.6 10.5C10.7 10.6 10.7 10.8 10.6 10.9C10.4 11.3 10.1 11.5 10 11.7C9.8 11.9 9.7 12.1 9.9 12.4C10.1 12.7 10.8 13.8 11.8 14.6C13 15.6 13.9 15.9 14.2 16.1C14.5 16.2 14.7 16.2 14.9 16C15.1 15.7 15.5 15.3 15.7 15C15.9 14.8 16.1 14.8 16.4 14.9C16.7 15 17.9 15.6 18.2 15.7C18.5 15.9 18.7 15.9 18.7 16.2C18.8 16.5 18.8 17.2 18.4 17.9C18 18.6 16.9 19.3 16.4 19.3C15.8 19.4 15.4 19.4 14.1 18.9C12.5 18.3 10.5 17 9 15.1C8.6 14.6 7.5 13.2 7.5 11.7C7.5 10.2 8.3 9.5 8.5 8.7Z" fill="white"/></g></svg>
+</a>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="assets/logo_dark.png" alt="Marca Direta">
+        <p>Registro no INPI com acompanhamento do início ao fim. Protocolo, monitoramento e defesa.</p>
+      </div>
+      <div class="social">
+        <a href="https://www.instagram.com/marca.direta/" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><rect x="2.2" y="2.2" width="19.6" height="19.6" rx="5.2" stroke="#0E2B28" stroke-width="1.4"/><circle cx="12" cy="12" r="3.6" stroke="#0E2B28" stroke-width="1.4"/><circle cx="17.4" cy="6.6" r="1" fill="#0E2B28"/></svg>
+        </a>
+        <a href="index.html#contato" aria-label="Fale com a gente">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5" stroke="#0E2B28" stroke-width="1.4"/><path d="M3.5 6L12 13L20.5 6" stroke="#0E2B28" stroke-width="1.4" stroke-linecap="round"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-inner">
+      <div class="foot-links">
+        <a href="index.html#oferecemos">Registro de marca</a>
+        <a href="servicos-complementares.html">Serviços complementares</a>
+        <a href="index.html#como-funciona">Como funciona</a>
+        <a href="index.html#faq">FAQ</a>
+      </div>
+      <div class="foot-copy">© <span id="year"></span> Marca Direta. Todos os direitos reservados.</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const header = document.getElementById('site-header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 8);
+  }, { passive:true });
+
+  // menu mobile
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+  menuToggle.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    menuToggle.setAttribute('aria-expanded', open);
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    menuToggle.setAttribute('aria-expanded', false);
+  }));
+
+  // submenu "O que oferecemos"
+  const navItem = document.getElementById('navItem');
+  const subToggle = document.getElementById('subToggle');
+  subToggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const open = navItem.classList.toggle('open');
+    subToggle.setAttribute('aria-expanded', open);
+  });
+  document.addEventListener('click', (e) => {
+    if(!navItem.contains(e.target)){ navItem.classList.remove('open'); subToggle.setAttribute('aria-expanded', false); }
+  });
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape'){ navItem.classList.remove('open'); subToggle.setAttribute('aria-expanded', false); }
+  });
+
+  // reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('in-view'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
