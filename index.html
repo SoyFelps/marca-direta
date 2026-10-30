@@ -758,6 +758,201 @@
     .form-success{ padding:48px 22px 42px; }
   }
 
+  /* ---------- Contato: primeira tela ocupa a janela; o resto aparece ao rolar ---------- */
+  .contact-section{ padding-top: 0; }
+  .first-screen{
+    min-height: calc(100vh - 82px); min-height: calc(100svh - 82px);
+    display:flex; flex-direction:column; justify-content:center;
+    padding: 24px 0;
+  }
+  .first-screen .contact-body{ margin-top: 0; }
+  .contact-below{ margin-top: 0; }
+
+  /* ---------- Contato: selos, benefícios (bento) e cartão de WhatsApp ---------- */
+  .trust-chips{
+    max-width:920px; margin:6px auto 0;
+    display:grid; grid-template-columns:repeat(4,1fr); gap:12px;
+  }
+  .trust-chip{
+    display:flex; align-items:center; gap:10px;
+    background: var(--white); border:1px solid var(--line); border-radius:16px;
+    padding:12px 14px; font-size:.8rem; font-weight:600; color: var(--ink); line-height:1.3;
+  }
+  .trust-chip svg{ flex:none; }
+
+  .features{ padding: 90px 0 30px; }
+  .features-head{ text-align:center; max-width:640px; margin:0 auto 56px; }
+  .features-head h2{ font-size: clamp(1.7rem, 3.4vw, 2.3rem); line-height:1.15; }
+
+  .bento{
+    max-width:960px; margin:0 auto;
+    display:grid; grid-template-columns:repeat(6,1fr); gap:28px;
+  }
+  .bento-card{
+    border-radius:30px; padding:44px 42px; background: var(--white);
+    border:1px solid var(--line); position:relative; overflow:hidden;
+    display:flex; flex-direction:column; justify-content:space-between; gap:36px;
+    min-height:300px;
+  }
+  .bento-card h3{ font-size: clamp(1.3rem, 2.2vw, 1.65rem); line-height:1.2; }
+  .bento-card p{ margin-top:14px; font-size:1rem; line-height:1.7; }
+  .bento-card p strong{ color: inherit; }
+  .b-guarantee{ grid-column: span 4; background: var(--ink); border-color: var(--ink); }
+  .b-guarantee h3{ color: var(--white); }
+  .b-guarantee p{ color: rgba(255,255,255,.72); }
+  .b-guarantee p strong{ color: var(--white); }
+  .b-speed{ grid-column: span 2; background: var(--gradient); border:0; }
+  .b-speed h3, .b-speed p, .b-speed p strong{ color: var(--white); }
+  .b-speed p{ opacity:.92; }
+  .b-years{ grid-column: span 2; background: var(--bg-soft); }
+  .b-chat{ grid-column: span 4; }
+
+  .big-num{
+    font-family:'Space Grotesk', sans-serif; font-weight:700; letter-spacing:-.04em;
+    font-size: clamp(3.4rem, 6vw, 4.6rem); line-height:.9; color: var(--white); white-space:nowrap;
+  }
+  .big-num small{ font-size:.34em; letter-spacing:0; margin-left:6px; opacity:.85; }
+  .b-years .big-num{ color: var(--teal); }
+
+  /* Garantia: selo de marca registrada */
+  .reg-proof{
+    display:flex; align-items:center; gap:16px; padding:16px 20px; border-radius:20px;
+    background: rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.12);
+  }
+  .reg-seal{
+    flex:none; width:46px; height:46px; border-radius:50%; background: var(--green);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow: 0 0 0 6px rgba(62,207,74,.18);
+  }
+  .reg-info{ display:flex; flex-direction:column; gap:2px; flex:1; min-width:0; }
+  .reg-info strong{ color: var(--white); font-size:1rem; }
+  .reg-info span{ color: rgba(255,255,255,.65); font-size:.82rem; }
+  .reg-tag{
+    flex:none; padding:7px 14px; border-radius:999px; background: var(--green); color: var(--ink);
+    font-size:.74rem; font-weight:700; letter-spacing:.03em; text-transform:uppercase;
+  }
+
+  /* 10 anos: régua de anos */
+  .years-bar{ display:grid; grid-template-columns:repeat(10,1fr); gap:4px; }
+  .years-bar span{ height:10px; border-radius:3px; background: var(--teal); opacity:.9; }
+  .years-bar span:nth-child(n+2){ opacity:.9; }
+
+  /* WhatsApp: conversa */
+  .b-chat{ flex-direction:row; align-items:center; gap:40px; }
+  .b-chat .chat-copy{ flex:1; min-width:0; }
+  .chat-demo{ flex:0 0 46%; max-width:300px; }
+  .bubble{ padding:11px 14px; border-radius:16px; font-size:.82rem; margin-bottom:12px; line-height:1.35; width:fit-content; max-width:92%; }
+  .bubble.in{ background:#EDF3EF; color: var(--ink); border-bottom-left-radius:4px; }
+  .bubble.out{ background:#DDF7E3; color: var(--ink); margin-left:auto; border-bottom-right-radius:4px; }
+
+  /* Linha de reforço: proteção contra plágio */
+  .protect-line{
+    max-width:920px; margin:16px auto 0; display:flex; gap:14px; align-items:center;
+    padding:18px 26px; border-radius:20px; border:1px dashed var(--line); color: var(--ink-soft); font-size:.92rem;
+  }
+  .protect-line svg{ flex:none; }
+  .protect-line strong{ color: var(--ink); }
+
+  .consult-card{
+    max-width:920px; margin:30px auto 0;
+    background: var(--bg-soft); border:1px solid var(--line); border-radius:28px;
+    padding:30px 34px; display:flex; gap:24px; align-items:center;
+  }
+  .consult-card .wa-copy h3{ font-size:1.25rem; color: var(--ink); margin-bottom:6px; }
+  .consult-card .wa-copy p{ font-size:.92rem; }
+  .consult-card .btn{ flex:none; }
+
+  /* Preço */
+  .pricing{ max-width:960px; margin:110px auto 20px; }
+  .pricing-head{ text-align:center; margin-bottom:48px; }
+  .pricing-head .mono{ color: var(--teal); display:block; margin-bottom:12px; }
+  .pricing-head h2{ font-size: clamp(1.7rem, 3.4vw, 2.3rem); line-height:1.15; }
+  .pricing-grid{ display:grid; grid-template-columns: 5fr 7fr; gap:28px; align-items:stretch; }
+  .price-card{
+    background: var(--ink); border-radius:30px; padding:44px 38px; color: var(--white);
+    display:flex; flex-direction:column; gap:14px; position:relative; overflow:hidden;
+  }
+  .price-card::after{
+    content:""; position:absolute; right:-60px; top:-60px; width:200px; height:200px; border-radius:50%;
+    background: radial-gradient(circle, rgba(62,207,74,.28), transparent 70%); pointer-events:none;
+  }
+  .price-label{
+    align-self:flex-start; padding:7px 14px; border-radius:999px; font-size:.74rem; font-weight:700;
+    letter-spacing:.04em; text-transform:uppercase; background: var(--green); color: var(--ink);
+  }
+  .price-main{ display:flex; flex-direction:column; margin-top:8px; position:relative; z-index:1; }
+  .price-main small{ font-size:1.1rem; color: rgba(255,255,255,.75); font-weight:600; }
+  .price-main b{
+    font-family:'Space Grotesk', sans-serif; font-weight:700; letter-spacing:-.04em; line-height:1;
+    font-size: clamp(3rem, 6vw, 4.2rem); color: var(--white); white-space:nowrap;
+  }
+  .price-alt{ font-size:1.05rem; color: rgba(255,255,255,.8); position:relative; z-index:1; }
+  .price-alt strong{ color: var(--white); }
+  .price-fine{
+    position:relative; z-index:1; margin-top:2px; font-size:.82rem; line-height:1.6; color: rgba(255,255,255,.62);
+  }
+  .price-note{
+    margin-top:auto; padding-top:20px; border-top:1px solid rgba(255,255,255,.14);
+    display:flex; gap:10px; align-items:center; font-size:.88rem; color: var(--green); font-weight:600; position:relative; z-index:1;
+  }
+  .price-note svg{ flex:none; }
+  .included{
+    background: var(--white); border:1px solid var(--line); border-radius:30px; padding:40px 40px;
+  }
+  .included h3, .why-reg h3{ font-size:1.35rem; margin-bottom:26px; }
+  .check-list, .why-grid{ list-style:none; margin:0; padding:0; }
+  .check-list{ display:flex; flex-direction:column; gap:20px; }
+  .check-list li{ display:flex; gap:14px; align-items:flex-start; line-height:1.55; color: var(--ink); font-size:.98rem; }
+  .check-list svg{ flex:none; margin-top:1px; }
+  .why-reg{
+    margin-top:28px; background: var(--bg-soft); border:1px solid var(--line); border-radius:30px; padding:44px 42px;
+  }
+  .why-grid{ display:grid; grid-template-columns:1fr 1fr; gap:26px 40px; }
+  .why-grid li{ display:flex; gap:14px; align-items:flex-start; }
+  .why-grid p{ font-size:.98rem; line-height:1.65; }
+  .why-grid p strong{ color: var(--ink); }
+  .diamond{
+    flex:none; width:12px; height:12px; margin-top:7px; background: var(--gradient);
+    transform: rotate(45deg); border-radius:3px;
+  }
+  .pricing-foot{
+    margin-top:44px; display:flex; flex-direction:column; align-items:center; gap:28px; text-align:center;
+  }
+  .online-pill{
+    display:inline-flex; align-items:center; gap:10px; padding:12px 22px; border-radius:999px;
+    background: var(--white); border:1px solid var(--line); font-weight:600; font-size:.92rem; color: var(--ink);
+  }
+  .online-pill svg{ color: var(--teal); }
+  .pricing-help{ display:flex; align-items:center; gap:20px; flex-wrap:wrap; justify-content:center; }
+  .pricing-help p{ font-weight:600; color: var(--ink); font-size:1.05rem; }
+
+  @media (max-width: 900px){
+    .trust-chips{ grid-template-columns:1fr 1fr; }
+    .pricing-grid{ grid-template-columns:1fr; }
+  }
+  @media (max-width: 720px){
+    .bento{ grid-template-columns:1fr; }
+    .b-guarantee, .b-speed, .b-years, .b-chat{ grid-column: auto; }
+    .bento{ gap:18px; }
+    .bento-card{ padding:32px 26px; border-radius:24px; min-height:0; gap:28px; }
+    .features{ padding-top:60px; }
+    .features-head{ margin-bottom:34px; }
+    .b-chat{ flex-direction:column; align-items:stretch; }
+    .chat-demo{ flex:none; max-width:none; }
+    .consult-card{ flex-direction:column; align-items:stretch; padding:26px 22px; border-radius:22px; }
+    .consult-card .btn{ width:100%; justify-content:center; }
+    .pricing{ margin-top:70px; }
+    .pricing-head{ margin-bottom:32px; }
+    .price-card{ padding:34px 26px; border-radius:24px; }
+    .included, .why-reg{ padding:32px 26px; border-radius:24px; }
+    .why-grid{ grid-template-columns:1fr; gap:22px; }
+    .pricing-help .btn{ width:100%; justify-content:center; }
+    .pricing-help{ width:100%; flex-direction:column; gap:14px; }
+  }
+  @media (max-width: 420px){
+    .trust-chips{ grid-template-columns:1fr; }
+  }
+
   /* ---------- Roteamento entre páginas (mesma HTML) ---------- */
   .back-link{ display:none; }
   body.route-contato .nav-inner-links{ display:none !important; }
@@ -779,7 +974,7 @@
         <a href="#faq">Perguntas frequentes</a>
       </div>
       <a href="#top" class="btn btn-ghost back-link">← Voltar para o site</a>
-      <a href="#contato" class="btn btn-primary cta-link">Verificar disponibilidade</a>
+      <a href="#contato" class="btn btn-primary cta-link">Registrar minha marca</a>
     </div>
     <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -797,7 +992,7 @@
       <h1>Proteja sua marca <span class="accent">agora mesmo contra a concorrência.</span></h1>
       <p class="lead">A Marca Direta conduz todo o processo de registro no INPI com acompanhamento do início ao fim. Inlcui pesquisa de anterioridade, protocolo, monitoramento e defesa em caso de conflito.</p>
       <div class="hero-cta">
-        <a href="#contato" class="btn btn-primary">Verificar disponibilidade agora</a>
+        <a href="#contato" class="btn btn-primary">Quero registrar minha marca</a>
         <a href="#como-funciona" class="btn btn-ghost">Ver como funciona</a>
       </div>
       <ul class="checklist">
@@ -1082,8 +1277,8 @@
           <div class="faq-a"><p>Existe uma série de medidas cabíveis para proteger sua marca contra concorrentes e pessoas agindo de má-fé — avaliamos o cenário e indicamos o caminho mais adequado.</p></div>
         </div>
         <div class="faq-item">
-          <button class="faq-q"><span>Posso fazer uma consulta sem compromisso?</span><span class="plus"></span></button>
-          <div class="faq-a"><p>Sim. Entre em contato gratuitamente para esclarecer dúvidas e analisarmos juntos a melhor estratégia para o seu caso.</p></div>
+          <button class="faq-q"><span>Posso só consultar se minha marca está disponível?</span><span class="plus"></span></button>
+          <div class="faq-a"><p>Sim. A consulta é gratuita: chame a nossa equipe no WhatsApp e analisamos juntos se o nome da sua marca está disponível e qual a melhor estratégia para o seu caso.</p></div>
         </div>
       </div>
     </div>
@@ -1099,17 +1294,17 @@
   <section class="contact-section" id="contato">
     <div class="wrap">
 
+      <div class="first-screen">
       <div class="contact-intro reveal">
-        <span class="mono">Consulta gratuita de marca</span>
-        <h2>Verifique se o nome da sua empresa está disponível para registro no INPI</h2>
-        <p>Sem custo e sem compromisso.</p>
-      </div>
+        <span class="mono">Registro de marca no INPI</span>
+        <h2>Registre sua marca no INPI com garantia e acompanhamento</h2>
+        <p>Informe os dados abaixo. Verificamos a disponibilidade do nome e enviamos a proposta de registro direto no seu WhatsApp.</p>      </div>
 
       <div class="contact-body">
 
         <div class="form-shell reveal" id="formulario">
 
-        <div class="form-title"><h3 id="formTitle">Qual o nome da sua empresa?</h3></div>
+        <div class="form-title"><h3 id="formTitle">Qual o nome da marca que você quer registrar?</h3></div>
 
         <form
           class="md-form"
@@ -1123,7 +1318,7 @@
           <!-- ETAPA 1 -->
           <div class="form-step" id="step1" data-step="1">
             <div class="field">
-              <label for="f-marca">Qual o nome da sua empresa?<span class="req">*</span></label>
+              <label for="f-marca">Nome da marca que você quer registrar<span class="req">*</span></label>
               <input type="text" id="f-marca" name="entry.1409856353" placeholder="Ex: Marca Direta" required autocomplete="off" autofocus>
               <small class="err">Preencha o nome da sua empresa.</small>
             </div>
@@ -1165,7 +1360,7 @@
             </div>
 
             <div class="submit-row">
-              <button type="submit" class="btn btn-primary btn-block" id="mdSubmitBtn">Verificar disponibilidade</button>
+              <button type="submit" class="btn btn-primary btn-block" id="mdSubmitBtn">Enviar para análise</button>
             </div>
             <div class="cf-turnstile" data-sitekey="0x4AAAAAAFfK0rxj5C3G66S4" data-theme="light" data-size="flexible" data-appearance="interaction-only"></div>
             <p class="form-foot-note">Ao enviar, você concorda em ser contatado pela nossa equipe pelo WhatsApp ou e-mail.</p>
@@ -1178,8 +1373,8 @@
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M4 12.5L9.2 17.5L20 5.5" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
           <h3>Recebemos suas informações!</h3>
-          <p>Nossa equipe vai analisar os dados e entrar em contato pelo WhatsApp em breve com o resultado da consulta.</p>
-          <a href="https://wa.me/5531998984257?text=Ol%C3%A1!%20Acabei%20de%20enviar%20o%20formul%C3%A1rio%20de%20consulta%20de%20marca." target="_blank" rel="noopener" class="btn btn-whatsapp">Tirar dúvidas no WhatsApp</a>
+          <p>Nossa equipe vai verificar a disponibilidade da sua marca e enviar a proposta de registro pelo WhatsApp em breve.</p>
+          <a href="https://wa.me/5531998984257?text=Ol%C3%A1!%20Acabei%20de%20enviar%20o%20formul%C3%A1rio%20e%20quero%20registrar%20minha%20marca." target="_blank" rel="noopener" class="btn btn-whatsapp">Falar com a equipe no WhatsApp</a>
         </div>
 
         </div>
@@ -1192,7 +1387,126 @@
             <h3>Prefere ir direto ao ponto?</h3>
             <p>Chame a nossa equipe agora mesmo pelo WhatsApp e já tire suas dúvidas sobre o registro da sua marca.</p>
           </div>
-          <a href="https://wa.me/5531998984257?text=Ol%C3%A1!%20Quero%20verificar%20a%20disponibilidade%20da%20minha%20marca." target="_blank" rel="noopener" class="btn btn-whatsapp">Chamar no WhatsApp</a>
+          <a href="https://wa.me/5531998984257?text=Ol%C3%A1!%20Quero%20registrar%20minha%20marca." target="_blank" rel="noopener" class="btn btn-whatsapp">Chamar no WhatsApp</a>
+        </div>
+
+        <div class="trust-chips reveal">
+          <div class="trust-chip"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.6 1.4 5.1L2 22l5.1-1.3C8.5 21.5 10.2 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2Z" stroke="#1B7A7A" stroke-width="1.6" stroke-linejoin="round"/></svg>Atendimento via WhatsApp</div>
+          <div class="trust-chip"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9.5" stroke="#1B7A7A" stroke-width="1.6"/><path d="M12 6.5V12l3.5 2" stroke="#1B7A7A" stroke-width="1.6" stroke-linecap="round"/></svg>Protocolo em até 24h úteis</div>
+          <div class="trust-chip"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2.5 4 5.5v6c0 5 3.4 8.6 8 10 4.6-1.4 8-5 8-10v-6l-8-3Z" stroke="#1B7A7A" stroke-width="1.6" stroke-linejoin="round"/><path d="m8.5 12 2.5 2.5 4.5-5" stroke="#1B7A7A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Registro garantido</div>
+          <div class="trust-chip"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="16" rx="3" stroke="#1B7A7A" stroke-width="1.6"/><path d="M3 9h18M8 13h8M8 16.5h5" stroke="#1B7A7A" stroke-width="1.6" stroke-linecap="round"/></svg>Certificado válido por 10 anos</div>
+        </div>
+
+      </div>
+      </div>
+
+      <div class="contact-body contact-below">
+
+        <div class="features">
+          <div class="features-head reveal">
+            <span class="mono" style="color:var(--teal);display:block;margin-bottom:12px">Por que a Marca Direta</span>
+            <h2>Simples, transparente e com garantia</h2>
+          </div>
+
+          <div class="bento">
+            <div class="bento-card b-guarantee reveal">
+              <div>
+                <h3>Seu registro é garantido.</h3>
+                <p>Caso seu pedido seja negado, <strong>continuaremos tentando até conseguir o registro de uma marca para você, sem cobrança de honorários adicionais</strong>. Você paga apenas a taxa do INPI.</p>
+              </div>
+              <div class="reg-proof" aria-hidden="true">
+                <div class="reg-seal"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 12.5 9.2 17.5 20 5.5" stroke="#0E2B28" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                <div class="reg-info"><strong>Marca registrada</strong><span>Certificado de registro no INPI</span></div>
+                <span class="reg-tag">Garantido</span>
+              </div>
+            </div>
+
+            <div class="bento-card b-speed reveal">
+              <div class="big-num">24<small>h úteis</small></div>
+              <div>
+                <h3>Protocolo rápido</h3>
+                <p>Pedido protocolado <strong>em até 24 horas úteis</strong> após o envio dos documentos.</p>
+              </div>
+            </div>
+
+            <div class="bento-card b-years reveal">
+              <div class="big-num">10<small>anos</small></div>
+              <div>
+                <div class="years-bar" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                <h3 style="margin-top:18px">Certificado de registro</h3>
+                <p>Válido por 10 anos. Evite plágio e uso indevido da sua marca.</p>
+              </div>
+            </div>
+
+            <div class="bento-card b-chat reveal">
+              <div class="chat-copy">
+                <h3>Tudo pelo WhatsApp, sem juridiquês.</h3>
+                <p>Você fala direto com a nossa equipe do início ao fim. Cada andamento chega com explicação e próximos passos.</p>
+              </div>
+              <div class="chat-demo" aria-hidden="true">
+                <div class="bubble in">Como está o meu registro?</div>
+                <div class="bubble out">Protocolado! Agora é só aguardar o INPI. Eu te aviso a cada novidade.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="consult-card reveal" id="consultaRapida">
+          <div class="wa-icon-circle">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#1B7A7A" stroke-width="1.8"/><path d="m16.5 16.5 4 4" stroke="#1B7A7A" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </div>
+          <div class="wa-copy">
+            <h3>Quer só consultar antes?</h3>
+            <p>Sem problema. Chame a equipe no WhatsApp e descubra se o nome da sua marca já está registrado no INPI. A consulta é gratuita.</p>
+          </div>
+          <a href="https://wa.me/5531998984257?text=Ol%C3%A1!%20Quero%20apenas%20consultar%20se%20minha%20marca%20est%C3%A1%20dispon%C3%ADvel." target="_blank" rel="noopener" class="btn btn-whatsapp">Consultar minha marca</a>
+        </div>
+
+        <div class="pricing">
+          <div class="pricing-head reveal">
+            <span class="mono">Investimento</span>
+            <h2>Mais barato do que perder sua marca</h2>
+          </div>
+
+          <div class="pricing-grid reveal">
+            <div class="price-card">
+              <span class="price-label">No cartão de crédito</span>
+              <div class="price-main"><small>12x de</small><b>R$&nbsp;79,90</b></div>
+              <div class="price-alt">ou <strong>R$&nbsp;900</strong> no Pix</div>              <div class="price-note">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="m5 12.5 4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Taxas do INPI já inclusas nesse valor
+              </div>
+              <p class="price-fine">Valor para um registro em uma classe. O valor final depende de quantas classes sua marca precisa.</p>
+            </div>
+
+            <div class="included">
+              <h3>O que está incluído</h3>
+              <ul class="check-list">
+                <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#E4F5E7"/><path d="m7 12.5 3.5 3.5L17 9" stroke="#1B7A7A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Pedido de registro no INPI, com toda a parte técnica feita por advogado</span></li>
+                <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#E4F5E7"/><path d="m7 12.5 3.5 3.5L17 9" stroke="#1B7A7A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Número do processo para você acompanhar direto no INPI quando quiser</span></li>
+                <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#E4F5E7"/><path d="m7 12.5 3.5 3.5L17 9" stroke="#1B7A7A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Comunicação transparente de todos os andamentos</span></li>
+                <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#E4F5E7"/><path d="m7 12.5 3.5 3.5L17 9" stroke="#1B7A7A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Defesa contra oposições (caso haja)</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="why-reg reveal">
+            <h3>Por que vale a pena registrar</h3>
+            <ul class="why-grid">
+              <li><span class="diamond"></span><p>Exclusividade sobre o nome <strong id="brandName">da sua marca</strong> no seu ramo em todo o Brasil</p></li>
+              <li><span class="diamond"></span><p>Segurança para investir em divulgação, site e redes sociais sem o risco de alguém registrar antes ou de você ter que trocar de nome depois</p></li>
+              <li><span class="diamond"></span><p>Base para impedir que terceiros usem nome igual ou parecido</p></li>
+              <li><span class="diamond"></span><p>A proteção vale por 10 anos e pode ser renovada</p></li>
+            </ul>
+          </div>
+
+          <div class="pricing-foot reveal">
+            <span class="online-pill"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/><path d="M8 20.5h8M12 17v3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>O processo é 100% online</span>
+            <div class="pricing-help">
+              <p>Ficou alguma dúvida?</p>
+              <a href="https://wa.me/5531998984257?text=Ol%C3%A1!%20Tenho%20uma%20d%C3%BAvida%20sobre%20o%20registro%20da%20minha%20marca." target="_blank" rel="noopener" class="btn btn-whatsapp">Chamar no WhatsApp</a>
+            </div>
+          </div>
         </div>
 
       </div>
@@ -1254,7 +1568,7 @@
   // As duas "páginas" vivem no mesmo arquivo HTML, mas só uma fica visível
   // por vez. A navegação usa a âncora da URL (#contato, #formulario) como rota.
   const HOME_TITLE = document.title;
-  const CONTATO_TITLE = 'Fale com a Marca Direta — Consulta de disponibilidade de marca';
+  const CONTATO_TITLE = 'Registre sua marca no INPI com garantia — Marca Direta';
   const pageHome = document.getElementById('top');
   const pageContato = document.getElementById('page-contato');
 
@@ -1365,10 +1679,10 @@
     }
 
     const stepTitles = {
-      1: 'Qual o nome da sua empresa?',
+      1: 'Qual o nome da marca que você quer registrar?',
       2: 'Qual o seu ramo de atuação?',
       3: 'Qual o seu nome?',
-      4: 'Vamos enviar o resultado. Qual o seu contato?'
+      4: 'Para onde enviamos a sua proposta de registro?'
     };
 
     function updateFormTitle(stepNum){
@@ -1489,6 +1803,15 @@
     });
     updateFormTitle(1);
 
+    // Mostra o nome digitado na seção de preços ("Exclusividade sobre o nome ...")
+    const brandName = document.getElementById('brandName');
+    const brandInput = document.getElementById('f-marca');
+    if(brandName && brandInput){
+      brandInput.addEventListener('input', () => {
+        brandName.textContent = brandInput.value.trim() || 'da sua marca';
+      });
+    }
+
     mdForm.addEventListener('submit', (e) => {
       e.preventDefault();
       if(mdSubmitting) return;
@@ -1518,7 +1841,7 @@
         if(!result.ok) throw new Error('Lead submit rejected');
         mdSubmitting = false;
         gtag_report_conversion();
-        if(formTitle) formTitle.textContent = 'Verificação em Andamento';
+        if(formTitle) formTitle.textContent = 'Solicitação recebida';
         mdForm.classList.add('hide');
         mdSuccess.classList.add('show');
         mdSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -1526,7 +1849,7 @@
         console.warn('[lead-submit] Não foi possível enviar o formulário:', error);
         mdSubmitting = false;
         mdSubmitBtn.disabled = false;
-        mdSubmitBtn.textContent = 'Verificar disponibilidade';
+        mdSubmitBtn.textContent = 'Enviar para análise';
         if(window.turnstile) window.turnstile.reset();
         alert('Não foi possível enviar agora. Atualize a verificação de segurança e tente novamente.');
       });
