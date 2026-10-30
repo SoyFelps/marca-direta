@@ -1008,6 +1008,41 @@
     .home-offer .pricing{ margin-top: 64px; }
   }
 
+  /* ---------- Menu com submenu ---------- */
+  .nav-item{ position:relative; display:flex; align-items:center; gap:2px; }
+  .sub-toggle{
+    background:none; border:0; padding:6px; cursor:pointer; display:inline-flex; color: var(--ink-soft);
+    border-radius:8px;
+  }
+  .sub-toggle svg{ transition: transform .2s ease; }
+  .nav-item.open .sub-toggle svg,
+  .nav-item:hover .sub-toggle svg{ transform: rotate(180deg); }
+  .submenu{
+    position:absolute; top:100%; left:-14px; min-width:250px; margin-top:8px; padding:8px;
+    background: var(--white); border:1px solid var(--line); border-radius:16px; box-shadow: var(--shadow);
+    opacity:0; visibility:hidden; transform: translateY(6px);
+    transition: opacity .2s ease, transform .2s ease, visibility .2s ease; z-index:120;
+  }
+  .submenu::before{ content:""; position:absolute; left:0; right:0; top:-12px; height:12px; }
+  .nav-item:hover .submenu,
+  .nav-item:focus-within .submenu,
+  .nav-item.open .submenu{ opacity:1; visibility:visible; transform:none; }
+  .submenu a{ display:block; padding:10px 14px; border-radius:10px; font-size:.9rem; color: var(--ink-soft); }
+  .submenu a:hover{ background: var(--bg-soft); color: var(--ink); }
+  @media (max-width: 760px){
+    .nav-item{ width:100%; flex-direction:column; align-items:stretch; }
+    .sub-toggle{ display:none; }
+    .submenu{
+      position:static; opacity:1; visibility:visible; transform:none; box-shadow:none; border:0;
+      padding:0 0 0 16px; margin:0; min-width:0; background:transparent;
+    }
+    .submenu::before{ display:none; }
+    .nav-links .submenu a{ padding:12px 0; border-radius:0; }
+  }
+  /* Cards de serviços complementares viram links */
+  a.support-card{ display:block; }
+  .support-more{ text-align:center; margin-top:34px; }
+
   /* ---------- Roteamento entre páginas (mesma HTML) ---------- */
   .back-link{ display:none; }
   body.route-contato .nav-inner-links{ display:none !important; }
@@ -1023,7 +1058,19 @@
     <a href="#top" class="logo"><img src="assets/logo_dark.png" alt="Marca Direta"></a>
     <div class="nav-links" id="navLinks">
       <div class="nav-inner-links" id="navInnerLinks" style="display:contents;">
-        <a href="#oferecemos">O que oferecemos</a>
+        <div class="nav-item" id="navItem">
+          <a href="#oferecemos">O que oferecemos</a>
+          <button type="button" class="sub-toggle" id="subToggle" aria-label="Mostrar opções de serviços" aria-expanded="false" aria-controls="submenu">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="submenu" id="submenu">
+            <a href="#oferecemos">Registro de marca</a>
+            <a href="servicos-complementares.html#google-meu-negocio">Google Meu Negócio</a>
+            <a href="servicos-complementares.html#criacao-de-sites">Criação de sites</a>
+            <a href="servicos-complementares.html#protecao-de-dominios">Proteção de domínios</a>
+            <a href="servicos-complementares.html#registro-de-cnpj">Registro de CNPJ</a>
+          </div>
+        </div>
         <a href="#como-funciona">Como funciona</a>
         <a href="#quem-somos">Quem somos</a>
         <a href="#faq">Perguntas frequentes</a>
@@ -1412,31 +1459,32 @@
         <p>Além da proteção da sua marca, cuidamos de pontos essenciais para colocar sua empresa no lugar certo e fortalecer sua presença online.</p>
       </div>
       <div class="support-grid">
-        <div class="support-card reveal">
+        <a href="servicos-complementares.html#google-meu-negocio" class="support-card reveal">
           <div class="support-icon"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M20 10.5C20 15.5 12 21 12 21S4 15.5 4 10.5C4 6.91 7.13 4 12 4S20 6.91 20 10.5Z" stroke="#1B7A7A" stroke-width="1.6"/><circle cx="12" cy="10" r="2.5" stroke="#3ECF4A" stroke-width="1.6"/></svg></div>
           <span class="offer-num mono">01</span>
           <h3>Google Meu Negócio</h3>
           <p>Criação e configuração do perfil da sua empresa no Google para facilitar que clientes encontrem seu negócio.</p>
-        </div>
-        <div class="support-card reveal">
+        </a>
+        <a href="servicos-complementares.html#criacao-de-sites" class="support-card reveal">
           <div class="support-icon"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="16" rx="2" stroke="#1B7A7A" stroke-width="1.6"/><path d="M3 8H21M8 4V8M16 4V8" stroke="#3ECF4A" stroke-width="1.6" stroke-linecap="round"/><path d="M7 13H10M14 13H17M7 16H12" stroke="#1B7A7A" stroke-width="1.4" stroke-linecap="round"/></svg></div>
           <span class="offer-num mono">02</span>
           <h3>Criação de sites</h3>
           <p>Sites profissionais, responsivos e pensados para apresentar sua empresa com clareza e credibilidade.</p>
-        </div>
-        <div class="support-card reveal">
+        </a>
+        <a href="servicos-complementares.html#protecao-de-dominios" class="support-card reveal">
           <div class="support-icon"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="12" rx="2" stroke="#1B7A7A" stroke-width="1.6"/><path d="M3 10H21M7 14H10" stroke="#3ECF4A" stroke-width="1.6" stroke-linecap="round"/></svg></div>
           <span class="offer-num mono">03</span>
           <h3>Proteção de domínios</h3>
           <p>Orientação e registro de domínios para proteger o endereço digital da sua empresa e evitar conflitos.</p>
-        </div>
-        <div class="support-card reveal">
+        </a>
+        <a href="servicos-complementares.html#registro-de-cnpj" class="support-card reveal">
           <div class="support-icon"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"><rect x="5" y="3" width="14" height="18" rx="2" stroke="#1B7A7A" stroke-width="1.6"/><path d="M9 7H15M9 11H15M9 15H13" stroke="#3ECF4A" stroke-width="1.6" stroke-linecap="round"/></svg></div>
           <span class="offer-num mono">04</span>
           <h3>Registro de CNPJ</h3>
           <p>Auxílio no processo de abertura e formalização da empresa para você começar seu negócio de forma organizada.</p>
-        </div>
+        </a>
       </div>
+      <div class="support-more reveal"><a href="servicos-complementares.html" class="btn btn-ghost">Conhecer os serviços complementares</a></div>
     </div>
   </section>
 
@@ -1760,7 +1808,8 @@
     </div>
     <div class="footer-inner">
       <div class="foot-links">
-        <a href="#oferecemos">O que oferecemos</a>
+        <a href="#oferecemos">Registro de marca</a>
+        <a href="servicos-complementares.html">Serviços complementares</a>
         <a href="#como-funciona">Como funciona</a>
         <a href="#faq">FAQ</a>
       </div>
@@ -1819,6 +1868,21 @@
     navLinks.classList.remove('open');
     menuToggle.setAttribute('aria-expanded', false);
   }));
+
+  // submenu "O que oferecemos"
+  const navItem = document.getElementById('navItem');
+  const subToggle = document.getElementById('subToggle');
+  if(navItem && subToggle){
+    const closeSub = () => { navItem.classList.remove('open'); subToggle.setAttribute('aria-expanded', false); };
+    subToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const open = navItem.classList.toggle('open');
+      subToggle.setAttribute('aria-expanded', open);
+    });
+    document.addEventListener('click', (e) => { if(!navItem.contains(e.target)) closeSub(); });
+    document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeSub(); });
+    navItem.querySelectorAll('.submenu a').forEach(a => a.addEventListener('click', closeSub));
+  }
 
   // FAQ accordion
   document.querySelectorAll('.faq-item').forEach(item => {
