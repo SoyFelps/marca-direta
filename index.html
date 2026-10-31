@@ -705,6 +705,21 @@
   }
   .field input::placeholder{ color: rgba(62,94,90,.45); }
   .field input:focus{ border-color: var(--teal); background: var(--white); box-shadow: 0 0 0 4px rgba(27,122,122,.12); }
+  /* WhatsApp: prefixo +55 fixo (só visual; o valor enviado continua (DD) 9XXXX-XXXX) */
+  .phone-field{
+    display:flex; align-items:stretch; border-radius:12px; overflow:hidden;
+    border:1.5px solid var(--line); background: var(--bg);
+    transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+  }
+  .phone-field:focus-within{ border-color: var(--teal); background: var(--white); box-shadow: 0 0 0 4px rgba(27,122,122,.12); }
+  .phone-prefix{
+    display:flex; align-items:center; gap:8px; padding:0 14px 0 16px; flex:none;
+    border-right:1.5px solid var(--line); background: rgba(14,43,40,.035);
+    font-size:1rem; font-weight:600; color: var(--ink); white-space:nowrap;
+  }
+  .field .phone-field input,
+  .field .phone-field input:focus{ flex:1; min-width:0; border:0; border-radius:0; background:transparent; box-shadow:none; }
+  .field.invalid .phone-field{ border-color:#C24545; }
   .field small.err{ display:none; font-size:.78rem; color:#C24545; font-weight:500; }
   .field.invalid input{ border-color:#C24545; }
   .field.invalid small.err{ display:block; }
@@ -1586,7 +1601,13 @@
           <div class="form-step contact-details-step" id="step4" data-step="4" hidden>
             <div class="field">
               <label for="f-whats">Qual o seu WhatsApp? (com DDD)<span class="req">*</span></label>
-              <input type="tel" id="f-whats" name="entry.1394606880" placeholder="(00) 00000-0000" inputmode="numeric" autocomplete="tel" maxlength="15" pattern="\(\d{2}\) \d{5}-\d{4}" required>
+              <div class="phone-field">
+                <span class="phone-prefix" aria-hidden="true">
+                  <svg width="24" height="17" viewBox="0 0 28 20" fill="none"><defs><clipPath id="brFlagClip"><rect width="28" height="20" rx="3"/></clipPath></defs><g clip-path="url(#brFlagClip)"><rect width="28" height="20" fill="#009C3B"/><path d="M14 2.2 25.5 10 14 17.8 2.5 10Z" fill="#FFDF00"/><circle cx="14" cy="10" r="4.7" fill="#002776"/><path d="M9.6 9.1C13 8.2 16.3 8.7 18.5 10.4" stroke="#fff" stroke-width="1.1" stroke-linecap="round"/></g></svg>
+                  +55
+                </span>
+                <input type="tel" id="f-whats" name="entry.1394606880" placeholder="(00) 00000-0000" inputmode="numeric" autocomplete="tel-national" pattern="\(\d{2}\) \d{5}-\d{4}" required>
+              </div>
               <small class="err">Informe um número válido, no formato (11) 91234-5678.</small>
             </div>
 
@@ -2000,7 +2021,11 @@
     const mdPhoneInput = document.getElementById('f-whats');
     if(mdPhoneInput){
       mdPhoneInput.addEventListener('input', () => {
-        let digits = mdPhoneInput.value.replace(/\D/g, '').slice(0, 11);
+        let digits = mdPhoneInput.value.replace(/\D/g, '').replace(/^0+/, '');
+        // Quem digita o código do país (55) antes do DDD acaba com mais de 11 dígitos:
+        // descarta o 55 inicial em vez de cortar o fim do número.
+        if(digits.length > 11 && digits.startsWith('55')) digits = digits.slice(2);
+        digits = digits.slice(0, 11);
         let formatted = digits;
         if(digits.length > 0) formatted = '(' + digits.slice(0, 2);
         if(digits.length >= 3) formatted += ') ' + digits.slice(2, 7);
