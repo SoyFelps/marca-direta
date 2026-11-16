@@ -1113,6 +1113,17 @@
   a.support-card{ display:block; }
   .support-more{ text-align:center; margin-top:34px; }
 
+  /* ---------- Guias ---------- */
+  .guides{ padding: 20px 0 90px; }
+  .guide-grid-home{ display:grid; grid-template-columns: repeat(3, 1fr); gap:24px; }
+  .guide-card{ display:flex; flex-direction:column; gap:12px; background: var(--white); border:1px solid var(--line); border-radius: var(--radius); padding:30px 28px; transition: transform .3s ease, box-shadow .3s ease; }
+  .guide-card:hover{ transform: translateY(-6px); box-shadow: var(--shadow); }
+  .guide-card .mono{ color: var(--teal); }
+  .guide-card h3{ font-size:1.18rem; line-height:1.25; }
+  .guide-card p{ font-size:.95rem; }
+  .guide-more{ margin-top:auto; font-weight:600; color: var(--teal); font-size:.92rem; }
+  @media (max-width: 900px){ .guide-grid-home{ grid-template-columns: 1fr; } .guides{ padding-bottom:70px; } }
+
   /* ---------- Roteamento entre páginas (mesma HTML) ---------- */
   .back-link{ display:none; }
   body.route-contato .nav-inner-links{ display:none !important; }
@@ -1585,6 +1596,22 @@
           <button class="faq-q"><span>Posso só consultar se minha marca está disponível?</span><span class="plus"></span></button>
           <div class="faq-a"><p>Sim. A consulta é gratuita: chame a nossa equipe no WhatsApp e analisamos juntos se o nome da sua marca está disponível e qual a melhor estratégia para o seu caso.</p></div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GUIAS -->
+  <section class="guides" id="guias">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="mono">Guias</span>
+        <h2>Guias para proteger sua marca</h2>
+        <p>Respostas diretas às dúvidas mais comuns sobre o registro no INPI.</p>
+      </div>
+      <div class="guide-grid-home reveal">
+        <a class="guide-card" href="/guias/como-registrar-marca-inpi/"><span class="mono">Guia 01</span><h3>Como registrar uma marca no INPI: passo a passo</h3><p>Da busca prévia ao certificado: as etapas do registro e o que cada uma exige de você.</p><span class="guide-more">Ler guia →</span></a>
+        <a class="guide-card" href="/guias/quanto-custa-registrar-marca/"><span class="mono">Guia 02</span><h3>Quanto custa registrar uma marca</h3><p>O que compõe o custo, de que depende o valor e o que perguntar antes de contratar.</p><span class="guide-more">Ler guia →</span></a>
+        <a class="guide-card" href="/guias/como-saber-se-marca-esta-registrada/"><span class="mono">Guia 03</span><h3>Como saber se uma marca já está registrada</h3><p>Como fazer a consulta gratuita no INPI e interpretar o resultado antes de investir na marca.</p><span class="guide-more">Ler guia →</span></a>
       </div>
     </div>
   </section>
