@@ -12,8 +12,46 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Marca Direta — Registro e proteção de marcas</title>
-<meta name="description" content="Registro, monitoramento e defesa de marcas no INPI. Condução jurídica especializada do briefing à concessão.">
+<title>Registro de Marca no INPI | Marca Direta</title>
+<meta name="description" content="Registro de marca no INPI com acompanhamento do início ao fim, protocolo em até 24h úteis e processo 100% online.">
+<link rel="canonical" href="https://marcadireta.com.br/">
+<meta name="theme-color" content="#FAFAF8">
+
+<!-- Prévia ao compartilhar o link (WhatsApp, Instagram, Facebook, LinkedIn) -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Marca Direta">
+<meta property="og:title" content="Registro de Marca no INPI | Marca Direta">
+<meta property="og:description" content="Registro de marca no INPI com acompanhamento do início ao fim, protocolo em até 24h úteis e processo 100% online.">
+<meta property="og:url" content="https://marcadireta.com.br/">
+<meta property="og:image" content="https://marcadireta.com.br/assets/og-marca-direta.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Marca Direta: registro de marca no INPI">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Registro de Marca no INPI | Marca Direta">
+<meta name="twitter:description" content="Registro de marca no INPI com acompanhamento do início ao fim, protocolo em até 24h úteis e processo 100% online.">
+<meta name="twitter:image" content="https://marcadireta.com.br/assets/og-marca-direta.jpg">
+
+<!-- Dados estruturados: quem é a empresa -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Marca Direta",
+  "url": "https://marcadireta.com.br/",
+  "logo": "https://marcadireta.com.br/assets/mark.svg",
+  "description": "Registro de marca no INPI com acompanhamento do início ao fim.",
+  "sameAs": ["https://www.instagram.com/marca.direta/"],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer service",
+    "telephone": "+55-31-99898-4257",
+    "areaServed": "BR",
+    "availableLanguage": "Portuguese"
+  }
+}
+</script>
 
 <link rel="icon" type="image/svg+xml" href="assets/mark.svg">
 <link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48.png">
@@ -282,6 +320,21 @@
     height: 100%;
     border: 0;
   }
+
+  .video-facade{
+    position:absolute; inset:0; width:100%; height:100%; padding:0; border:0; cursor:pointer;
+    background: var(--ink); display:block;
+  }
+  .video-facade img{ width:100%; height:100%; object-fit:cover; display:block; opacity:.92; transition: opacity .25s ease, transform .4s ease; }
+  .video-facade:hover img{ opacity:1; transform: scale(1.02); }
+  .video-play{
+    position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+    width:76px; height:76px; border-radius:50%; background: var(--gradient);
+    display:flex; align-items:center; justify-content:center; padding-left:4px;
+    box-shadow: 0 16px 36px -10px rgba(14,43,40,.6); transition: transform .25s ease;
+  }
+  .video-facade:hover .video-play{ transform:translate(-50%,-50%) scale(1.08); }
+  .video-facade:focus-visible{ outline:3px solid var(--green); outline-offset:-3px; }
 
   @media (max-width: 640px){
     .video-section{
@@ -1072,7 +1125,7 @@
 
 <header id="site-header">
   <div class="wrap header-inner">
-    <a href="#top" class="logo"><img src="assets/logo_dark.png" alt="Marca Direta"></a>
+    <a href="#top" class="logo"><img src="assets/logo_dark.png" alt="Marca Direta" width="67" height="34"></a>
     <div class="nav-links" id="navLinks">
       <div class="nav-inner-links" id="navInnerLinks" style="display:contents;">
         <div class="nav-item" id="navItem">
@@ -1109,7 +1162,7 @@
     <div class="hero-inner">
       <span class="eyebrow mono">Registro de marcas · Atuação em todo o Brasil</span>
       <h1>Proteja sua marca <span class="accent">agora mesmo contra a concorrência.</span></h1>
-      <p class="lead">A Marca Direta conduz todo o processo de registro no INPI com acompanhamento do início ao fim. Inlcui pesquisa de anterioridade, protocolo, monitoramento e defesa em caso de conflito.</p>
+      <p class="lead">A Marca Direta conduz todo o processo de registro no INPI com acompanhamento do início ao fim. Inclui pesquisa de anterioridade, protocolo, monitoramento e defesa em caso de conflito.</p>
       <div class="hero-cta">
         <a href="#contato" class="btn btn-primary">Quero registrar minha marca</a>
         <a href="#como-funciona" class="btn btn-ghost">Ver como funciona</a>
@@ -1144,12 +1197,10 @@
     <div class="wrap">
       <div class="video-wrapper reveal">
         <div class="video-frame">
-          <iframe
-            src="https://www.youtube.com/embed/L_ofGTp36R8"
-            title="Conheça a Marca Direta"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen>
-          </iframe>
+          <button type="button" class="video-facade" data-yt="L_ofGTp36R8" aria-label="Reproduzir vídeo: Conheça a Marca Direta">
+            <img src="https://i.ytimg.com/vi/L_ofGTp36R8/hqdefault.jpg" alt="" width="480" height="360" loading="lazy">
+            <span class="video-play" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 24 24" fill="#fff"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5Z"/></svg></span>
+          </button>
         </div>
       </div>
     </div>
@@ -1448,7 +1499,7 @@
       </div>
       <div class="team-grid">
         <div class="team-card reveal">
-          <div class="avatar"><img src="assets/team/felipe.png" alt="Felipe Grossi Parreiras"></div>
+          <div class="avatar"><img src="assets/team/felipe.webp" alt="Felipe Grossi Parreiras" width="240" height="240" loading="lazy"></div>
           <div>
             <h3>Felipe Grossi Parreiras</h3>
             <div class="role">Advogado — OAB/MG 199.259</div>
@@ -1456,7 +1507,7 @@
           </div>
         </div>
         <div class="team-card reveal">
-          <div class="avatar"><img src="assets/team/thais.png" alt="Thaís Botelho Machado"></div>
+          <div class="avatar"><img src="assets/team/thais.webp" alt="Thaís Botelho Machado" width="240" height="240" loading="lazy"></div>
           <div>
             <h3>Thaís Botelho Machado</h3>
             <div class="role">Crescimento e Relacionamento</div>
@@ -1802,12 +1853,10 @@
     <div class="wrap">
       <div class="video-wrapper reveal">
         <div class="video-frame">
-          <iframe
-            src="https://www.youtube.com/embed/w1pPVJmlSJI"
-            title="Conheça a Marca Direta"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen>
-          </iframe>
+          <button type="button" class="video-facade" data-yt="w1pPVJmlSJI" aria-label="Reproduzir vídeo: Conheça a Marca Direta">
+            <img src="https://i.ytimg.com/vi/w1pPVJmlSJI/hqdefault.jpg" alt="" width="480" height="360" loading="lazy">
+            <span class="video-play" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 24 24" fill="#fff"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5Z"/></svg></span>
+          </button>
         </div>
       </div>
     </div>
@@ -1817,7 +1866,7 @@
   <div class="wrap">
     <div class="footer-top">
       <div class="footer-brand">
-        <img src="assets/logo_dark.png" alt="Marca Direta">
+        <img src="assets/logo_dark.png" alt="Marca Direta" width="55" height="28" loading="lazy">
         <p>Registro no INPI com acompanhamento do início ao fim. Protocolo, monitoramento e defesa.</p>
       </div>
       <div class="social">
@@ -1891,6 +1940,18 @@
     navLinks.classList.remove('open');
     menuToggle.setAttribute('aria-expanded', false);
   }));
+
+  // vídeos: o player do YouTube só é carregado quando a pessoa clica na capa
+  document.querySelectorAll('.video-facade').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const frame = document.createElement('iframe');
+      frame.src = 'https://www.youtube-nocookie.com/embed/' + btn.dataset.yt + '?autoplay=1&rel=0';
+      frame.title = 'Conheça a Marca Direta';
+      frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      frame.allowFullscreen = true;
+      btn.replaceWith(frame);
+    });
+  });
 
   // submenu "O que oferecemos"
   const navItem = document.getElementById('navItem');
