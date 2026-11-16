@@ -591,7 +591,7 @@
   }
   .social a:hover{ background: var(--gradient); border-color:transparent; transform: translateY(-3px); }
   .social a:hover svg path{ fill: white; }
-  .foot-links{ display:flex; gap:28px; font-size:.88rem; color:var(--ink-soft); }
+  .foot-links{ display:flex; flex-wrap:wrap; gap:10px 28px; font-size:.88rem; color:var(--ink-soft); }
   .foot-copy{ font-size:.82rem; color: var(--ink-soft); }
 
   /* ---------- Reveal on scroll ---------- */
@@ -780,6 +780,8 @@
   .field.invalid small.err{ display:block; }
   .md-form .submit-row{ margin-top: 8px; }
   .form-foot-note{ margin-top: 6px; font-size: .78rem; color: var(--ink-soft); text-align:center; }
+  .form-foot-note a{ color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+  .form-foot-note a:hover{ color: var(--teal); }
 
   .form-success{ display:none; padding: 58px 44px 54px; text-align:center; }
   .form-success.show{ display:block; }
@@ -1701,7 +1703,7 @@
               <button type="submit" class="btn btn-primary btn-block" id="mdSubmitBtn">Enviar para análise</button>
             </div>
             <div class="cf-turnstile" data-sitekey="0x4AAAAAAFfK0rxj5C3G66S4" data-theme="light" data-size="flexible" data-appearance="interaction-only"></div>
-            <p class="form-foot-note">Ao enviar, você concorda em ser contatado pela nossa equipe pelo WhatsApp ou e-mail.</p>
+            <p class="form-foot-note">Ao enviar, você concorda com a <a href="privacidade/" target="_blank" rel="noopener">política de privacidade</a> e em ser contatado pelo WhatsApp ou e-mail.</p>
           </div>
 
         </form>
@@ -1911,6 +1913,7 @@
         <a href="servicos-complementares.html">Serviços complementares</a>
         <a href="#como-funciona">Como funciona</a>
         <a href="#faq">FAQ</a>
+        <a href="privacidade/">Política de Privacidade</a>
       </div>
       <div class="foot-copy">© <span id="year"></span> Marca Direta. Todos os direitos reservados.</div>
     </div>
