@@ -2092,7 +2092,7 @@
         email: document.getElementById('f-email').value.trim(),
         source: document.referrer || 'direct',
         page_url: window.location.href,
-        gclid: params.get('gclid'),
+        gclid: params.get('gclid') || (window.mdGetGclid ? window.mdGetGclid() : null),
         user_agent: navigator.userAgent
       };
     }
