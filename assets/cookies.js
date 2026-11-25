@@ -18,11 +18,42 @@
     try { localStorage.setItem(KEY, JSON.stringify({ ads: ads, v: 1, t: new Date().toISOString() })); } catch (e) {}
   }
 
+  // ---- gclid (identificador do clique em anúncio) ----
+  // Fica guardado na sessão (sessionStorage) para o formulário conseguir enviá-lo mesmo depois de a pessoa
+  // navegar por outras páginas do site. Só passa a ser guardado por 90 dias (localStorage) se ela aceitar
+  // os cookies de publicidade e medição.
+  var GKEY = 'md_gclid', GDAYS = 90;
+  function readJSON(store, key) { try { return JSON.parse(store.getItem(key)); } catch (e) { return null; } }
+  function storeLong(g) { try { localStorage.setItem(GKEY, JSON.stringify({ g: g, t: Date.now() })); } catch (e) {} }
+  function captureGclid() {
+    var g;
+    try { g = new URLSearchParams(location.search).get('gclid'); } catch (e) {}
+    if (!g) return;
+    try { sessionStorage.setItem(GKEY, g); } catch (e) {}
+    var c = load();
+    if (c && c.ads) storeLong(g);
+  }
+  // Lido pelo formulário: usa o que está guardado quando o gclid já não está na URL.
+  window.mdGetGclid = function () {
+    try {
+      var s = sessionStorage.getItem(GKEY);
+      if (s) return s;
+    } catch (e) {}
+    var c = load();
+    if (c && c.ads) {
+      var l = readJSON(localStorage, GKEY);
+      if (l && l.g && Date.now() - l.t < GDAYS * 86400000) return l.g;
+    }
+    return null;
+  };
+  captureGclid();
+
   // ---- Google Ads: carrega somente com consentimento ----
   var adsLoaded = false;
   function enableAds() {
     if (adsLoaded) return;
     adsLoaded = true;
+    try { var sg = sessionStorage.getItem(GKEY); if (sg) storeLong(sg); } catch (e) {}
     window.mdAdsConsent = true;
     var s = document.createElement('script');
     s.async = true;
@@ -64,6 +95,7 @@
     if (ads) enableAds();
     else {
       window.mdAdsConsent = false;
+      try { localStorage.removeItem(GKEY); } catch (e) {}
       clearAdsCookies();
       // Se já tinha aceitado antes, recarrega para o script do Google sair da página.
       if (hadAds && adsLoaded) location.reload();
